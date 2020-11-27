@@ -1,0 +1,22 @@
+export enum IdentityEvent {
+  CREATED = "identity_created",
+
+  ADDRESS_CHANGED = "identity_address_changed",
+  BIRTH_DATE_CHANGED = "identity_birth_date_changed",
+  DISPLAY_NAME_CHANGED = "identity_display_name_changed",
+  FAMILY_NAME_CHANGED = "identity_family_name_changed",
+  GENDER_CHANGED = "identity_gender_changed",
+  GIVEN_NAME_CHANGED = "identity_given_name_changed",
+  GRAVATAR_CHANGED = "identity_gravatar_changed",
+  LOCALE_CHANGED = "identity_locale_changed",
+  MIDDLE_NAME_CHANGED = "identity_middle_name_changed",
+  NICKNAME_CHANGED = "identity_nickname_changed",
+  PHONE_NUMBER_CHANGED = "identity_phone_number_changed",
+  PHONE_NUMBER_VERIFIED_CHANGED = "identity_phone_number_verified_changed",
+  PICTURE_CHANGED = "identity_picture_changed",
+  PREFERRED_USERNAME_CHANGED = "identity_preferred_username_changed",
+  PROFILE_CHANGED = "identity_profile_changed",
+  USERNAME_CHANGED = "identity_username_changed",
+  WEBSITE_CHANGED = "identity_website_changed",
+  ZONE_INFO_CHANGED = "identity_zone_info_changed",
+}

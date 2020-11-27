@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`removeDisplayNameNumber should return a display name 1`] = `
+Object {
+  "identity": Object {
+    "display_name": Object {
+      "data": Array [
+        Object {
+          "created": 2020-01-01T07:00:00.000Z,
+          "events": Array [
+            Object {
+              "date": 2020-01-01T07:00:00.000Z,
+              "name": "display_name_created",
+              "payload": Object {
+                "name": "mockName",
+                "numbers": Array [
+                  1111,
+                  2222,
+                  3333,
+                  4444,
+                ],
+              },
+            },
+            Object {
+              "date": 2020-01-01T07:00:00.000Z,
+              "name": "display_name_number_removed",
+              "payload": Object {
+                "number": 1111,
+              },
+            },
+          ],
+          "id": "be3a62d1-24a0-401c-96dd-3aff95356811",
+          "name": "mockName",
+          "numbers": Array [
+            2222,
+            3333,
+            4444,
+          ],
+          "updated": 2020-01-01T07:00:00.000Z,
+          "version": 1,
+        },
+      ],
+      "indices": Array [
+        Object {
+          "index": Object {
+            "id": 1,
+          },
+          "options": Object {
+            "unique": true,
+          },
+        },
+      ],
+    },
+  },
+}
+`;

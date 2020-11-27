@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`getIdentityOpenId should return bare minimum 1`] = `
+Object {
+  "openid": true,
+  "updatedAt": 1577862000,
+}
+`;
+
+exports[`getIdentityOpenId should return scoped data 1`] = `
+Object {
+  "openid": true,
+  "updatedAt": 1577862000,
+}
+`;

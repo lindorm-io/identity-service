@@ -1,0 +1,149 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ensureIdentityExists should create an identity and return dates 1`] = `
+Object {
+  "created": 2020-01-01T07:00:00.000Z,
+  "updated": 2020-01-01T07:00:00.000Z,
+}
+`;
+
+exports[`ensureIdentityExists should create an identity and return dates 2`] = `
+Object {
+  "identity": Object {
+    "identity": Object {
+      "data": Array [
+        Object {
+          "address": null,
+          "birthDate": null,
+          "created": 2020-01-01T07:00:00.000Z,
+          "displayName": null,
+          "events": Array [
+            Object {
+              "date": 2020-01-01T07:00:00.000Z,
+              "name": "identity_created",
+              "payload": Object {
+                "address": null,
+                "birthDate": null,
+                "familyName": null,
+                "gender": null,
+                "givenName": null,
+                "locale": null,
+                "middleName": null,
+                "nickname": null,
+                "phoneNumber": null,
+                "picture": null,
+                "preferredUsername": null,
+                "profile": null,
+                "website": null,
+                "zoneInfo": null,
+              },
+            },
+          ],
+          "familyName": null,
+          "gender": null,
+          "givenName": null,
+          "gravatar": null,
+          "id": "f9262c5b-9c8f-4e6d-8b99-55a43a3c5947",
+          "locale": null,
+          "middleName": null,
+          "nickname": null,
+          "phoneNumber": null,
+          "phoneNumberVerified": false,
+          "picture": null,
+          "preferredUsername": null,
+          "profile": null,
+          "updated": 2020-01-01T07:00:00.000Z,
+          "username": null,
+          "version": 0,
+          "website": null,
+          "zoneInfo": null,
+        },
+      ],
+      "indices": Array [
+        Object {
+          "index": Object {
+            "id": 1,
+          },
+          "options": Object {
+            "unique": true,
+          },
+        },
+      ],
+    },
+  },
+}
+`;
+
+exports[`ensureIdentityExists should find an identity and return dates 1`] = `
+Object {
+  "created": 2020-01-01T07:00:00.000Z,
+  "updated": 2020-01-01T07:00:00.000Z,
+}
+`;
+
+exports[`ensureIdentityExists should find an identity and return dates 2`] = `
+Object {
+  "identity": Object {
+    "identity": Object {
+      "data": Array [
+        Object {
+          "address": null,
+          "birthDate": null,
+          "created": 2020-01-01T07:00:00.000Z,
+          "displayName": null,
+          "events": Array [
+            Object {
+              "date": 2020-01-01T07:00:00.000Z,
+              "name": "identity_created",
+              "payload": Object {
+                "address": null,
+                "birthDate": null,
+                "familyName": null,
+                "gender": null,
+                "givenName": "exists",
+                "locale": null,
+                "middleName": null,
+                "nickname": null,
+                "phoneNumber": null,
+                "picture": null,
+                "preferredUsername": null,
+                "profile": null,
+                "website": null,
+                "zoneInfo": null,
+              },
+            },
+          ],
+          "familyName": null,
+          "gender": null,
+          "givenName": "exists",
+          "gravatar": null,
+          "id": "81961dc3-1c77-4613-b6e1-0960a6fa3293",
+          "locale": null,
+          "middleName": null,
+          "nickname": null,
+          "phoneNumber": null,
+          "phoneNumberVerified": false,
+          "picture": null,
+          "preferredUsername": null,
+          "profile": null,
+          "updated": 2020-01-01T07:00:00.000Z,
+          "username": null,
+          "version": 0,
+          "website": null,
+          "zoneInfo": null,
+        },
+      ],
+      "indices": Array [
+        Object {
+          "index": Object {
+            "id": 1,
+          },
+          "options": Object {
+            "unique": true,
+          },
+        },
+      ],
+    },
+  },
+}
+`;

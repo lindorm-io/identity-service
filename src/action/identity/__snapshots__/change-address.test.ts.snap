@@ -1,0 +1,87 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`changeAddress should change address 1`] = `
+Object {
+  "identity": Object {
+    "identity": Object {
+      "data": Array [
+        Object {
+          "address": Object {
+            "country": "country",
+            "locality": "locality",
+            "postalCode": "postalCode",
+            "region": "region",
+            "streetAddress": "streetAddress",
+          },
+          "birthDate": null,
+          "created": 2020-01-01T07:00:00.000Z,
+          "displayName": null,
+          "events": Array [
+            Object {
+              "date": 2020-01-01T07:00:00.000Z,
+              "name": "identity_created",
+              "payload": Object {
+                "address": null,
+                "birthDate": null,
+                "familyName": null,
+                "gender": null,
+                "givenName": null,
+                "locale": null,
+                "middleName": null,
+                "nickname": null,
+                "phoneNumber": null,
+                "picture": null,
+                "preferredUsername": null,
+                "profile": null,
+                "website": null,
+                "zoneInfo": null,
+              },
+            },
+            Object {
+              "date": 2020-01-01T07:00:00.000Z,
+              "name": "identity_address_changed",
+              "payload": Object {
+                "address": Object {
+                  "country": "country",
+                  "locality": "locality",
+                  "postalCode": "postalCode",
+                  "region": "region",
+                  "streetAddress": "streetAddress",
+                },
+              },
+            },
+          ],
+          "familyName": null,
+          "gender": null,
+          "givenName": null,
+          "gravatar": null,
+          "id": "fd4e3548-1279-4065-9671-74c3bbea0c25",
+          "locale": null,
+          "middleName": null,
+          "nickname": null,
+          "phoneNumber": null,
+          "phoneNumberVerified": false,
+          "picture": null,
+          "preferredUsername": null,
+          "profile": null,
+          "updated": 2020-01-01T07:00:00.000Z,
+          "username": null,
+          "version": 1,
+          "website": null,
+          "zoneInfo": null,
+        },
+      ],
+      "indices": Array [
+        Object {
+          "index": Object {
+            "id": 1,
+          },
+          "options": Object {
+            "unique": true,
+          },
+        },
+      ],
+    },
+  },
+}
+`;

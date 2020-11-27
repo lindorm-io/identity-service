@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`getDisplayName should return a display name object 1`] = `
+Object {
+  "identity": Object {
+    "display_name": Object {
+      "data": Array [
+        Object {
+          "created": 2020-01-01T07:00:00.000Z,
+          "events": Array [
+            Object {
+              "date": 2020-01-01T07:00:00.000Z,
+              "name": "display_name_created",
+              "payload": Object {
+                "name": "display-name",
+                "numbers": Array [
+                  1,
+                ],
+              },
+            },
+            Object {
+              "date": 2020-01-01T07:00:00.000Z,
+              "name": "display_name_number_added",
+              "payload": Object {
+                "number": 1,
+              },
+            },
+          ],
+          "id": "be3a62d1-24a0-401c-96dd-3aff95356811",
+          "name": "display-name",
+          "numbers": Array [
+            1,
+          ],
+          "updated": 2020-01-01T07:00:00.000Z,
+          "version": 1,
+        },
+      ],
+      "indices": Array [
+        Object {
+          "index": Object {
+            "id": 1,
+          },
+          "options": Object {
+            "unique": true,
+          },
+        },
+      ],
+    },
+  },
+}
+`;
