@@ -18,6 +18,14 @@ export let TEST_ISSUER: TokenIssuer;
 export const setupIntegration = async (): Promise<void> => {
   const { displayName, identity } = await getGreyBoxRepository();
 
+  TEST_DISPLAY_NAME_REPOSITORY = displayName;
+  TEST_IDENTITY_REPOSITORY = identity;
+
+  TEST_DISPLAY_NAME = new DisplayName({
+    name: "displayName",
+    numbers: [1234],
+  });
+
   TEST_IDENTITY = new Identity({
     address: {
       country: "country",
@@ -47,15 +55,9 @@ export const setupIntegration = async (): Promise<void> => {
     website: "https://website.url/",
     zoneInfo: "Europe/Stockholm",
   });
-  TEST_IDENTITY_REPOSITORY = identity;
-  await TEST_IDENTITY_REPOSITORY.create(TEST_IDENTITY);
 
-  TEST_DISPLAY_NAME = new DisplayName({
-    name: "displayName",
-    numbers: [1234],
-  });
-  TEST_DISPLAY_NAME_REPOSITORY = displayName;
   await TEST_DISPLAY_NAME_REPOSITORY.create(TEST_DISPLAY_NAME);
+  await TEST_IDENTITY_REPOSITORY.create(TEST_IDENTITY);
 
   inMemoryKeys.push(
     new KeyPair({

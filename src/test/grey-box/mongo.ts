@@ -19,14 +19,11 @@ export const getGreyBoxRepository = async (): Promise<IGetGreyBoxRepository> => 
 
   await mongo.connect();
 
+  const logger = winston;
+  const db = mongo.getDatabase();
+
   return {
-    displayName: new DisplayNameRepository({
-      db: mongo.getDatabase(),
-      logger: winston,
-    }),
-    identity: new IdentityRepository({
-      db: mongo.getDatabase(),
-      logger: winston,
-    }),
+    displayName: new DisplayNameRepository({ db, logger }),
+    identity: new IdentityRepository({ db, logger }),
   };
 };
