@@ -10,7 +10,6 @@ export interface IConfigurationData extends IConfigurationDataBase {
   JWT_ISSUER: string;
 
   WEB_KEY_HOST: string;
-  WEB_KEY_PATH: string;
 
   MONGO_INITDB_ROOT_USERNAME: string;
   MONGO_INITDB_ROOT_PASSWORD: string;

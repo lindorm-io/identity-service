@@ -11,7 +11,7 @@ jest.mock("uuid", () => ({
 
 MockDate.set("2020-01-01 08:00:00.000");
 
-const basicAuth = baseHash("basic_auth_username:basic_auth_password");
+const basicAuth = baseHash("secret:secret");
 
 describe("/headless", () => {
   let identity: Identity;

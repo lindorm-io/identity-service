@@ -5,13 +5,12 @@ export const developmentConfig: IConfigurationData = {
   SERVER_PORT: 3002,
   HOST: "http://localhost/",
 
-  BASIC_AUTH_USERNAME: "username",
-  BASIC_AUTH_PASSWORD: "password",
+  BASIC_AUTH_USERNAME: "secret",
+  BASIC_AUTH_PASSWORD: "secret",
 
-  JWT_ISSUER: "https://dev.lindorm.io/",
+  JWT_ISSUER: "https://dev.authentication.lindorm.io",
 
   WEB_KEY_HOST: "http://localhost:3001",
-  WEB_KEY_PATH: "/.well-known/jwks.json",
 
   MONGO_INITDB_ROOT_USERNAME: "root",
   MONGO_INITDB_ROOT_PASSWORD: "example",
