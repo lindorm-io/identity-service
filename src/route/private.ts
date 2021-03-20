@@ -3,28 +3,11 @@ import { HttpStatus } from "@lindorm-io/core";
 import { IKoaIdentityContext } from "../typing";
 import { Router } from "@lindorm-io/koa";
 import { bearerTokenMiddleware } from "@lindorm-io/koa-jwt";
-import {
-  changeAddress,
-  changeDisplayName,
-  changeUsername,
-  getIdentityInformation,
-  removeIdentity,
-  updateIdentity,
-} from "../action";
+import { changeAddress, changeDisplayName, changeUsername, removeIdentity, updateIdentity } from "../action";
 
 export const router = new Router();
 
 router.use(bearerTokenMiddleware(BEARER_TOKEN_MW_OPTIONS));
-
-router.get(
-  "/:id",
-  async (ctx: IKoaIdentityContext): Promise<void> => {
-    const identityId = ctx.params.id;
-
-    ctx.body = await getIdentityInformation(ctx)({ identityId });
-    ctx.status = HttpStatus.Success.OK;
-  },
-);
 
 router.patch(
   "/:id",

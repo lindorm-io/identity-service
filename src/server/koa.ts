@@ -1,6 +1,6 @@
 import { KoaApp } from "@lindorm-io/koa";
 import { SERVER_PORT, TOKEN_ISSUER_MW_OPTIONS } from "../config";
-import { appRoot, headless, identity } from "../route";
+import { appRoot, headless, openId, privateRoute, publicRoute } from "../route";
 import { getMongoMiddleware, getWebKeyMiddleware, repositoryMiddleware } from "../middleware";
 import { tokenIssuerMiddleware } from "@lindorm-io/koa-jwt";
 import { winston } from "../logger";
@@ -17,4 +17,6 @@ koa.addMiddleware(tokenIssuerMiddleware(TOKEN_ISSUER_MW_OPTIONS));
 
 koa.addRoute("/", appRoot);
 koa.addRoute("/headless", headless);
-koa.addRoute("/identity", identity);
+koa.addRoute("/open-id", openId);
+koa.addRoute("/private", privateRoute);
+koa.addRoute("/public", publicRoute);

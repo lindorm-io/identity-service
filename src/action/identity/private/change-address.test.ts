@@ -1,11 +1,11 @@
 import MockDate from "mockdate";
-import { Identity } from "../../entity";
+import { Identity } from "../../../entity";
 import { changeAddress } from "./change-address";
-import { getGreyBoxRepository, inMemoryStore, resetStore } from "../../test";
+import { getGreyBoxRepository, inMemoryStore, resetStore } from "../../../test";
 import { Scope } from "@lindorm-io/jwt";
-import { winston } from "../../logger";
+import { winston } from "../../../logger";
 
-jest.mock("../../support", () => ({
+jest.mock("../../../support", () => ({
   assertAccountPermission: jest.fn(() => () => undefined),
 }));
 

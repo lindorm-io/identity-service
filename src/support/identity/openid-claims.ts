@@ -1,6 +1,7 @@
 import { Identity } from "../../entity";
-import { Scope } from "@lindorm-io/jwt";
+import { isScope, Scope } from "@lindorm-io/jwt";
 import { IOpenIdClaim } from "../../typing";
+import { InvalidPermissionError } from "../../error";
 
 const getClaim = (identity: Identity, scope: Scope): IOpenIdClaim => {
   switch (scope) {
@@ -43,6 +44,9 @@ const getClaim = (identity: Identity, scope: Scope): IOpenIdClaim => {
     case Scope.PROFILE:
       return { profile: identity.profile };
 
+    case Scope.USERNAME:
+      return { username: identity.username };
+
     case Scope.WEBSITE:
       return { website: identity.website };
 
@@ -55,6 +59,10 @@ const getClaim = (identity: Identity, scope: Scope): IOpenIdClaim => {
 };
 
 export const getOpenIdClaims = (identity: Identity, scope: string): IOpenIdClaim => {
+  if (!isScope(scope, Scope.OPENID)) {
+    throw new InvalidPermissionError();
+  }
+
   const array = scope.split(" ") as Array<Scope>;
   let result: IOpenIdClaim = {};
 

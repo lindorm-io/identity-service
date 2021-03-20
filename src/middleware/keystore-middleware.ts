@@ -1,10 +1,11 @@
-import { NodeEnvironment, TPromise } from "@lindorm-io/core";
+import { IWebKeyMiddlewareOptions, webKeyMiddleware } from "@lindorm-io/koa-jwt";
+import { Middleware } from "koa";
+import { NodeEnvironment } from "@lindorm-io/core";
 import { WEB_KEY_MW_OPTIONS, NODE_ENVIRONMENT } from "../config";
 import { inMemoryKeys } from "../test";
-import { IWebKeyMiddlewareOptions, webKeyMiddleware } from "@lindorm-io/koa-jwt";
 import { winston } from "../logger";
 
-export const getWebKeyMiddleware = (): TPromise<void> => {
+export const getWebKeyMiddleware = (): Middleware => {
   const isTest = NODE_ENVIRONMENT === NodeEnvironment.TEST;
   const options: IWebKeyMiddlewareOptions = {
     ...WEB_KEY_MW_OPTIONS,

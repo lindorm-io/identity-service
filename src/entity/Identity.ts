@@ -259,20 +259,24 @@ export class Identity extends EntityBase {
     }
 
     this.addEvent(IdentityEvent.CREATED, {
-      givenName: this._givenName,
+      address: this._address,
+      birthDate: this._birthDate,
+      displayName: this._displayName,
       familyName: this._familyName,
+      gender: this._gender,
+      givenName: this._givenName,
+      gravatar: this._gravatar,
+      locale: this._locale,
       middleName: this._middleName,
       nickname: this._nickname,
+      phoneNumber: this._phoneNumber,
+      phoneNumberVerified: this._phoneNumberVerified,
+      picture: this._picture,
       preferredUsername: this._preferredUsername,
       profile: this._profile,
-      picture: this._picture,
+      username: this._username,
       website: this._website,
-      gender: this._gender,
-      birthDate: this._birthDate,
       zoneInfo: this._zoneInfo,
-      locale: this._locale,
-      phoneNumber: this._phoneNumber,
-      address: this._address,
     });
   }
 }

@@ -1,7 +1,7 @@
 import Joi from "@hapi/joi";
-import { IKoaIdentityContext } from "../../typing";
-import { InvalidScopeError } from "../../error";
-import { assertAccountPermission } from "../../support";
+import { IKoaIdentityContext } from "../../../typing";
+import { InvalidScopeError } from "../../../error";
+import { assertAccountPermission } from "../../../support";
 import { isScope, Scope } from "@lindorm-io/jwt";
 
 export interface IRemoveIdentityOptions {

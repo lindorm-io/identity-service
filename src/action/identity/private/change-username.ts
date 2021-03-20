@@ -1,8 +1,8 @@
 import Joi from "@hapi/joi";
-import { IKoaIdentityContext } from "../../typing";
+import { IKoaIdentityContext } from "../../../typing";
 import { RepositoryEntityNotFoundError } from "@lindorm-io/mongo";
-import { InvalidScopeError, UsernameConflictError } from "../../error";
-import { assertAccountPermission } from "../../support";
+import { InvalidScopeError, UsernameConflictError } from "../../../error";
+import { assertAccountPermission } from "../../../support";
 import { isScope, Scope } from "@lindorm-io/jwt";
 
 export interface IChangeUsernameOptions {

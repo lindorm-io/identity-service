@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`changeUsername should change username 1`] = `
+exports[`changeDisplayName should add new display name 1`] = `
 Object {
   "identity": Object {
     "identity": Object {
@@ -9,7 +9,10 @@ Object {
           "address": null,
           "birthDate": null,
           "created": 2020-01-01T07:00:00.000Z,
-          "displayName": null,
+          "displayName": Object {
+            "name": "newName",
+            "number": 9999,
+          },
           "events": Array [
             Object {
               "date": 2020-01-01T07:00:00.000Z,
@@ -17,25 +20,32 @@ Object {
               "payload": Object {
                 "address": null,
                 "birthDate": null,
+                "displayName": null,
                 "familyName": null,
                 "gender": null,
                 "givenName": null,
+                "gravatar": null,
                 "locale": null,
                 "middleName": null,
                 "nickname": null,
                 "phoneNumber": null,
+                "phoneNumberVerified": false,
                 "picture": null,
                 "preferredUsername": null,
                 "profile": null,
+                "username": null,
                 "website": null,
                 "zoneInfo": null,
               },
             },
             Object {
               "date": 2020-01-01T07:00:00.000Z,
-              "name": "identity_username_changed",
+              "name": "identity_display_name_changed",
               "payload": Object {
-                "username": null,
+                "displayName": Object {
+                  "name": "newName",
+                  "number": 9999,
+                },
               },
             },
           ],
@@ -53,7 +63,7 @@ Object {
           "preferredUsername": null,
           "profile": null,
           "updated": 2020-01-01T07:00:00.000Z,
-          "username": "username",
+          "username": null,
           "version": 1,
           "website": null,
           "zoneInfo": null,
@@ -74,7 +84,7 @@ Object {
 }
 `;
 
-exports[`changeUsername should throw error if the username exists 1`] = `
+exports[`changeDisplayName should change existing display name 1`] = `
 Object {
   "identity": Object {
     "identity": Object {
@@ -83,7 +93,10 @@ Object {
           "address": null,
           "birthDate": null,
           "created": 2020-01-01T07:00:00.000Z,
-          "displayName": null,
+          "displayName": Object {
+            "name": "newName",
+            "number": 9999,
+          },
           "events": Array [
             Object {
               "date": 2020-01-01T07:00:00.000Z,
@@ -91,25 +104,35 @@ Object {
               "payload": Object {
                 "address": null,
                 "birthDate": null,
+                "displayName": Object {
+                  "name": "displayName",
+                  "number": 1111,
+                },
                 "familyName": null,
                 "gender": null,
                 "givenName": null,
+                "gravatar": null,
                 "locale": null,
                 "middleName": null,
                 "nickname": null,
                 "phoneNumber": null,
+                "phoneNumberVerified": false,
                 "picture": null,
                 "preferredUsername": null,
                 "profile": null,
+                "username": null,
                 "website": null,
                 "zoneInfo": null,
               },
             },
             Object {
               "date": 2020-01-01T07:00:00.000Z,
-              "name": "identity_username_changed",
+              "name": "identity_display_name_changed",
               "payload": Object {
-                "username": null,
+                "displayName": Object {
+                  "name": "newName",
+                  "number": 9999,
+                },
               },
             },
           ],
@@ -128,53 +151,7 @@ Object {
           "profile": null,
           "updated": 2020-01-01T07:00:00.000Z,
           "username": null,
-          "version": 0,
-          "website": null,
-          "zoneInfo": null,
-        },
-        Object {
-          "address": null,
-          "birthDate": null,
-          "created": 2020-01-01T07:00:00.000Z,
-          "displayName": null,
-          "events": Array [
-            Object {
-              "date": 2020-01-01T07:00:00.000Z,
-              "name": "identity_created",
-              "payload": Object {
-                "address": null,
-                "birthDate": null,
-                "familyName": null,
-                "gender": null,
-                "givenName": null,
-                "locale": null,
-                "middleName": null,
-                "nickname": null,
-                "phoneNumber": null,
-                "picture": null,
-                "preferredUsername": null,
-                "profile": null,
-                "website": null,
-                "zoneInfo": null,
-              },
-            },
-          ],
-          "familyName": null,
-          "gender": null,
-          "givenName": null,
-          "gravatar": null,
-          "id": "e908c4fd-a0b2-4804-ba42-bef787490681",
-          "locale": null,
-          "middleName": null,
-          "nickname": null,
-          "phoneNumber": null,
-          "phoneNumberVerified": false,
-          "picture": null,
-          "preferredUsername": null,
-          "profile": null,
-          "updated": 2020-01-01T07:00:00.000Z,
-          "username": "exists",
-          "version": 0,
+          "version": 1,
           "website": null,
           "zoneInfo": null,
         },

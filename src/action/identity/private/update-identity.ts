@@ -1,8 +1,8 @@
 import Joi from "@hapi/joi";
-import { IKoaIdentityContext } from "../../typing";
-import { InvalidScopeError } from "../../error";
-import { JOI_DATE, JOI_LOCALE, JOI_PHONE, JOI_ZONE_INFO } from "../../constant";
-import { assertAccountPermission } from "../../support";
+import { IKoaIdentityContext } from "../../../typing";
+import { InvalidScopeError } from "../../../error";
+import { JOI_DATE, JOI_LOCALE, JOI_PHONE, JOI_ZONE_INFO } from "../../../constant";
+import { assertAccountPermission } from "../../../support";
 import { isScope, Scope } from "@lindorm-io/jwt";
 
 export interface IUpdateIdentityOptions {

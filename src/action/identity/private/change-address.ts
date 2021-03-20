@@ -1,8 +1,8 @@
 import Joi from "@hapi/joi";
-import { IKoaIdentityContext } from "../../typing";
-import { assertAccountPermission } from "../../support";
+import { IKoaIdentityContext } from "../../../typing";
+import { assertAccountPermission } from "../../../support";
 import { isScope, Scope } from "@lindorm-io/jwt";
-import { InvalidScopeError } from "../../error";
+import { InvalidScopeError } from "../../../error";
 
 export interface IChangeAddressOptions {
   identityId: string;

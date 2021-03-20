@@ -3,7 +3,6 @@ import request from "supertest";
 import { koa } from "../../server/koa";
 import { inMemoryStore, setupIntegration, TEST_IDENTITY } from "../grey-box";
 import { baseHash } from "@lindorm-io/core";
-import { Scope } from "@lindorm-io/jwt";
 
 jest.mock("uuid", () => ({
   v4: jest.fn(() => "e3926ddb-ecaf-4f66-855a-d143af54953c"),
@@ -17,22 +16,6 @@ describe("/headless", () => {
   beforeAll(async () => {
     await setupIntegration();
     koa.load();
-  });
-
-  test("GET /:id - should return identity information", async () => {
-    const response = await request(koa.callback())
-      .get(`/headless/${TEST_IDENTITY.id}`)
-      .set("Authorization", `Basic ${basicAuth}`)
-      .set("X-Client-ID", "5c63ca22-6617-45eb-9005-7c897a25d375")
-      .set("X-Correlation-ID", "5c63ca22-6617-45eb-9005-7c897a25d375")
-      .set(
-        "X-Open-ID-Scope",
-        [Scope.DEFAULT, Scope.OPENID, Scope.GIVEN_NAME, Scope.MIDDLE_NAME, Scope.FAMILY_NAME].join(" "),
-      )
-      .expect(200);
-
-    expect(response.body).toMatchSnapshot();
-    expect(inMemoryStore).toMatchSnapshot();
   });
 
   test("POST /:id - should create", async () => {

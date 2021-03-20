@@ -1,23 +1,27 @@
 import MockDate from "mockdate";
-import { Identity } from "../../entity";
-import { getGreyBoxRepository, resetStore } from "../../test";
-import { getIdentityInformation } from "./get-identity-information";
-import { winston } from "../../logger";
+import { Identity } from "../../../entity";
+import { getGreyBoxRepository, resetStore } from "../../../test";
+import { getOpenIdInformation } from "./get-open-id-information";
+import { winston } from "../../../logger";
 
-jest.mock("../../support", () => ({
-  ...jest.requireActual("../../support"),
+jest.mock("../../../support", () => ({
+  ...jest.requireActual("../../../support"),
   assertAccountPermission: jest.fn(() => () => undefined),
+  getOpenIdClaims: jest.fn(() => ({
+    openId: "mock-open-id-data",
+  })),
 }));
 
 MockDate.set("2020-01-01 08:00:00.000");
 
-describe("getIdentityInformation", () => {
+describe("getOpenIdInformation", () => {
   let ctx: any;
 
   beforeEach(async () => {
     ctx = {
       logger: winston,
       repository: await getGreyBoxRepository(),
+      token: { bearer: { scope: "scope" } },
     };
 
     await ctx.repository.identity.create(
@@ -64,6 +68,6 @@ describe("getIdentityInformation", () => {
       identityId: "fd4e3548-1279-4065-9671-74c3bbea0c25",
     };
 
-    await expect(getIdentityInformation(ctx)(options)).resolves.toMatchSnapshot();
+    await expect(getOpenIdInformation(ctx)(options)).resolves.toMatchSnapshot();
   });
 });

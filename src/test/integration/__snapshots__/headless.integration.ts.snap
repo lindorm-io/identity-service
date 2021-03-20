@@ -1,132 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`/headless GET /:id - should return identity information 1`] = `
-Object {
-  "family_name": "familyName",
-  "given_name": "givenName",
-  "middle_name": "middleName",
-  "updated_at": 1577862000,
-}
-`;
-
-exports[`/headless GET /:id - should return identity information 2`] = `
-Object {
-  "identity": Object {
-    "display_name": Object {
-      "data": Array [
-        Object {
-          "created": 2020-01-01T07:00:00.000Z,
-          "events": Array [
-            Object {
-              "date": 2020-01-01T07:00:00.000Z,
-              "name": "display_name_created",
-              "payload": Object {
-                "name": "displayName",
-                "numbers": Array [
-                  1234,
-                ],
-              },
-            },
-          ],
-          "id": "e3926ddb-ecaf-4f66-855a-d143af54953c",
-          "name": "displayName",
-          "numbers": Array [
-            1234,
-          ],
-          "updated": 2020-01-01T07:00:00.000Z,
-          "version": 0,
-        },
-      ],
-      "indices": Array [
-        Object {
-          "index": Object {
-            "id": 1,
-          },
-          "options": Object {
-            "unique": true,
-          },
-        },
-      ],
-    },
-    "identity": Object {
-      "data": Array [
-        Object {
-          "address": Object {
-            "country": "country",
-            "locality": "locality",
-            "postalCode": "postalCode",
-            "region": "region",
-            "streetAddress": "streetAddress",
-          },
-          "birthDate": "2000-01-01",
-          "created": 2020-01-01T07:00:00.000Z,
-          "displayName": Object {
-            "name": "displayName",
-            "number": 1234,
-          },
-          "events": Array [
-            Object {
-              "date": 2020-01-01T07:00:00.000Z,
-              "name": "identity_created",
-              "payload": Object {
-                "address": Object {
-                  "country": "country",
-                  "locality": "locality",
-                  "postalCode": "postalCode",
-                  "region": "region",
-                  "streetAddress": "streetAddress",
-                },
-                "birthDate": "2000-01-01",
-                "familyName": "familyName",
-                "gender": "gender",
-                "givenName": "givenName",
-                "locale": "sv-SE",
-                "middleName": "middleName",
-                "nickname": "nickname",
-                "phoneNumber": "+46700000000",
-                "picture": "https://picture.url/",
-                "preferredUsername": "preferredUsername",
-                "profile": "https://profile.url/",
-                "website": "https://website.url/",
-                "zoneInfo": "Europe/Stockholm",
-              },
-            },
-          ],
-          "familyName": "familyName",
-          "gender": "gender",
-          "givenName": "givenName",
-          "gravatar": "https://gravatar.url/",
-          "id": "e3926ddb-ecaf-4f66-855a-d143af54953c",
-          "locale": "sv-SE",
-          "middleName": "middleName",
-          "nickname": "nickname",
-          "phoneNumber": "+46700000000",
-          "phoneNumberVerified": true,
-          "picture": "https://picture.url/",
-          "preferredUsername": "preferredUsername",
-          "profile": "https://profile.url/",
-          "updated": 2020-01-01T07:00:00.000Z,
-          "username": "username",
-          "version": 0,
-          "website": "https://website.url/",
-          "zoneInfo": "Europe/Stockholm",
-        },
-      ],
-      "indices": Array [
-        Object {
-          "index": Object {
-            "id": 1,
-          },
-          "options": Object {
-            "unique": true,
-          },
-        },
-      ],
-    },
-  },
-}
-`;
-
 exports[`/headless POST /:id - should create 1`] = `
 Object {
   "created": "2020-01-01T07:00:00.000Z",
@@ -202,16 +75,23 @@ Object {
                   "streetAddress": "streetAddress",
                 },
                 "birthDate": "2000-01-01",
+                "displayName": Object {
+                  "name": "displayName",
+                  "number": 1234,
+                },
                 "familyName": "familyName",
                 "gender": "gender",
                 "givenName": "givenName",
+                "gravatar": "https://gravatar.url/",
                 "locale": "sv-SE",
                 "middleName": "middleName",
                 "nickname": "nickname",
                 "phoneNumber": "+46700000000",
+                "phoneNumberVerified": true,
                 "picture": "https://picture.url/",
                 "preferredUsername": "preferredUsername",
                 "profile": "https://profile.url/",
+                "username": "username",
                 "website": "https://website.url/",
                 "zoneInfo": "Europe/Stockholm",
               },
@@ -248,16 +128,20 @@ Object {
               "payload": Object {
                 "address": null,
                 "birthDate": null,
+                "displayName": null,
                 "familyName": null,
                 "gender": null,
                 "givenName": null,
+                "gravatar": null,
                 "locale": null,
                 "middleName": null,
                 "nickname": null,
                 "phoneNumber": null,
+                "phoneNumberVerified": false,
                 "picture": null,
                 "preferredUsername": null,
                 "profile": null,
+                "username": null,
                 "website": null,
                 "zoneInfo": null,
               },
@@ -373,16 +257,23 @@ Object {
                   "streetAddress": "streetAddress",
                 },
                 "birthDate": "2000-01-01",
+                "displayName": Object {
+                  "name": "displayName",
+                  "number": 1234,
+                },
                 "familyName": "familyName",
                 "gender": "gender",
                 "givenName": "givenName",
+                "gravatar": "https://gravatar.url/",
                 "locale": "sv-SE",
                 "middleName": "middleName",
                 "nickname": "nickname",
                 "phoneNumber": "+46700000000",
+                "phoneNumberVerified": true,
                 "picture": "https://picture.url/",
                 "preferredUsername": "preferredUsername",
                 "profile": "https://profile.url/",
+                "username": "username",
                 "website": "https://website.url/",
                 "zoneInfo": "Europe/Stockholm",
               },
@@ -419,16 +310,20 @@ Object {
               "payload": Object {
                 "address": null,
                 "birthDate": null,
+                "displayName": null,
                 "familyName": null,
                 "gender": null,
                 "givenName": null,
+                "gravatar": null,
                 "locale": null,
                 "middleName": null,
                 "nickname": null,
                 "phoneNumber": null,
+                "phoneNumberVerified": false,
                 "picture": null,
                 "preferredUsername": null,
                 "profile": null,
+                "username": null,
                 "website": null,
                 "zoneInfo": null,
               },

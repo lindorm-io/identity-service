@@ -23,8 +23,6 @@ export const JOI_DISPLAY_NAME_OBJECT = Joi.object({
   number: Joi.number().required(),
 });
 
-export const JOI_DISPLAY_NAME_STRING = Joi.string().regex(/^\w+#[0-9]{4}$/);
-
 export const JOI_DATE = Joi.string().regex(/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/);
 
 export const JOI_LOCALE = Joi.string().regex(/^[a-z]{2}-[A-Z]{2}$/);

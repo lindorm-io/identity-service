@@ -1,12 +1,12 @@
 import MockDate from "mockdate";
-import { Identity } from "../../entity";
+import { Identity } from "../../../entity";
 import { Scope } from "@lindorm-io/jwt";
 import { changeDisplayName } from "./change-display-name";
-import { getGreyBoxRepository, inMemoryStore, resetStore } from "../../test";
-import { removeDisplayNameNumber } from "../../support";
-import { winston } from "../../logger";
+import { getGreyBoxRepository, inMemoryStore, resetStore } from "../../../test";
+import { removeDisplayNameNumber } from "../../../support";
+import { winston } from "../../../logger";
 
-jest.mock("../../support", () => ({
+jest.mock("../../../support", () => ({
   assertAccountPermission: jest.fn(() => () => undefined),
   getDisplayNameObject: jest.fn(() => (name: string) => ({
     name,

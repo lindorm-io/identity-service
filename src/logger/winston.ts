@@ -3,6 +3,7 @@ import { NODE_ENVIRONMENT } from "../config";
 import { NodeEnvironment } from "@lindorm-io/core";
 import { join } from "path";
 import { readFileSync } from "fs";
+import { sanitiseToken } from "@lindorm-io/jwt";
 
 const pkg = readFileSync(join(__dirname, "..", "..", "package.json"), { encoding: "utf8" });
 const { name, version } = JSON.parse(pkg);
@@ -25,3 +26,5 @@ if (NODE_ENVIRONMENT === NodeEnvironment.PRODUCTION) {
 if (NODE_ENVIRONMENT !== NodeEnvironment.PRODUCTION) {
   winston.addConsole(LogLevel.DEBUG);
 }
+
+winston.addFilter("request.header.authorization", sanitiseToken);

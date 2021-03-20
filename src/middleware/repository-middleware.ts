@@ -1,6 +1,6 @@
+import { DisplayNameRepository, IdentityRepository } from "../infrastructure";
 import { IKoaIdentityContext } from "../typing";
 import { TPromise } from "@lindorm-io/core";
-import { DisplayNameRepository, IdentityRepository } from "../infrastructure";
 
 export const repositoryMiddleware = async (ctx: IKoaIdentityContext, next: TPromise<void>): Promise<void> => {
   const start = Date.now();
