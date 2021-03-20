@@ -7,10 +7,28 @@ export const indices: Array<IIndex> = [
   },
   {
     index: { displayName: 1 },
-    options: { unique: true },
+    options: {
+      partialFilterExpression: {
+        displayName: {
+          $exists: true,
+          $gt: "0",
+          $type: "string",
+        },
+      },
+      unique: true,
+    },
   },
   {
     index: { username: 1 },
-    options: { unique: true },
+    options: {
+      partialFilterExpression: {
+        username: {
+          $exists: true,
+          $gt: "0",
+          $type: "string",
+        },
+      },
+      unique: true,
+    },
   },
 ];
