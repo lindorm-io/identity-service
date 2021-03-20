@@ -41,17 +41,12 @@
     "@lindorm-io/key-pair": "^0.1.2",
     "@lindorm-io/koa": "^0.1.4",
     "@lindorm-io/koa-basic-auth": "^0.1.1",
-    "@lindorm-io/koa-client": "0.1.4",
     "@lindorm-io/koa-jwt": "^0.1.4",
     "@lindorm-io/koa-mongo": "^0.2.5",
-    "@lindorm-io/koa-redis": "0.0.3",
     "@lindorm-io/mongo": "^0.2.6",
-    "@lindorm-io/redis": "0.0.11",
     "@lindorm-io/winston": "^0.1.2",
-    "date-fns": "^2.19.0",
     "dotenv": "^8.2.0",
-    "lodash": "^4.17.21",
-    "uuid": "^8.3.2"
+    "lodash": "^4.17.21"
   },
   "devDependencies": {
     "@types/hapi__joi": "^17.1.6",
