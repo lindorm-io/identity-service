@@ -2,8 +2,8 @@ import { IConfigurationData } from "../ConfigHandler";
 
 export const stagingConfig: IConfigurationData = {
   NODE_ENVIRONMENT: process.env.NODE_ENV,
-  SERVER_PORT: 3001,
-  HOST: "http://localhost/",
+  SERVER_PORT: 3000,
+  HOST: "https://staging.identity.lindorm.io/",
 
   BASIC_AUTH_USERNAME: null,
   BASIC_AUTH_PASSWORD: null,

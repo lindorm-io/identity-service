@@ -2,7 +2,7 @@ import { IConfigurationData } from "../ConfigHandler";
 
 export const testConfig: IConfigurationData = {
   NODE_ENVIRONMENT: process.env.NODE_ENV,
-  SERVER_PORT: 3001,
+  SERVER_PORT: 3000,
   HOST: "http://localhost/",
 
   BASIC_AUTH_USERNAME: "basic_auth_username",

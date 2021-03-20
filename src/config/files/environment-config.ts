@@ -1,4 +1,7 @@
+import dotenv from "dotenv";
 import { IConfigurationData } from "../ConfigHandler";
+
+dotenv.config();
 
 export const environmentConfig: IConfigurationData = {
   NODE_ENVIRONMENT: process.env.NODE_ENV,
@@ -10,8 +13,8 @@ export const environmentConfig: IConfigurationData = {
 
   JWT_ISSUER: process.env.JWT_ISSUER,
 
-  WEB_KEY_HOST: process.env.JWKS_HOST,
-  WEB_KEY_PATH: process.env.JWKS_PATH,
+  WEB_KEY_HOST: process.env.WEB_KEY_HOST,
+  WEB_KEY_PATH: process.env.WEB_KEY_PATH,
 
   MONGO_INITDB_ROOT_USERNAME: process.env.MONGO_INITDB_ROOT_USERNAME,
   MONGO_INITDB_ROOT_PASSWORD: process.env.MONGO_INITDB_ROOT_PASSWORD,

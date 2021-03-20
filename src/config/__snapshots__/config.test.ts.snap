@@ -10,9 +10,11 @@ Object {
     "audience": "access",
     "issuer": "https://test.lindorm.io/",
   },
+  "HOST": "http://localhost/",
+  "IS_TEST": true,
   "MONGO_CONNECTION_OPTIONS": Object {
     "auth": Object {
-      "password": "password",
+      "password": "example",
       "user": "root",
     },
     "databaseName": "identity",
@@ -23,13 +25,12 @@ Object {
     },
   },
   "NODE_ENVIRONMENT": "test",
-  "SERVER_PORT": 3001,
+  "SERVER_PORT": 3000,
   "TOKEN_ISSUER_MW_OPTIONS": Object {
     "issuer": "https://test.lindorm.io/",
   },
   "WEB_KEY_MW_OPTIONS": Object {
     "host": "https://test.lindorm.io",
-    "path": "/.well-known/jwks",
   },
 }
 `;
