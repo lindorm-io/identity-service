@@ -1,5 +1,4 @@
-import { DisplayNameRepository } from "../../infrastructure/display-name";
-import { IdentityRepository } from "../../infrastructure/identity";
+import { DisplayNameRepository, IdentityRepository } from "../../infrastructure";
 import { MONGO_CONNECTION_OPTIONS } from "../../config";
 import { MongoConnection, MongoConnectionType } from "@lindorm-io/mongo";
 import { inMemoryStore } from "./in-memory";
