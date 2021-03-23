@@ -1,8 +1,7 @@
-import { TObject } from "@lindorm-io/core";
 import { KeyPair } from "@lindorm-io/key-pair";
 
 export let inMemoryKeys: Array<KeyPair> = [];
-export let inMemoryStore: TObject<any> = {};
+export let inMemoryStore: Record<string, any> = {};
 
 export const resetKeys = (): void => {
   inMemoryKeys = [];
