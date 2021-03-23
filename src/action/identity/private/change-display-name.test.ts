@@ -2,7 +2,7 @@ import MockDate from "mockdate";
 import { Identity } from "../../../entity";
 import { Scope } from "@lindorm-io/jwt";
 import { changeDisplayName } from "./change-display-name";
-import { getGreyBoxRepository, inMemoryStore, resetStore } from "../../../test";
+import { getTestRepository, inMemoryStore, resetStore } from "../../../test";
 import { removeDisplayNameNumber } from "../../../support";
 import { winston } from "../../../logger";
 
@@ -23,7 +23,7 @@ describe("changeDisplayName", () => {
   beforeEach(async () => {
     ctx = {
       logger: winston,
-      repository: await getGreyBoxRepository(),
+      repository: await getTestRepository(),
       token: { bearer: { scope: [Scope.DEFAULT, Scope.EDIT].join(" ") } },
     };
   });

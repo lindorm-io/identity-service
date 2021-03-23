@@ -3,7 +3,7 @@ import { Identity } from "../../../entity";
 import { Scope } from "@lindorm-io/jwt";
 import { UsernameConflictError } from "../../../error";
 import { changeUsername } from "./change-username";
-import { getGreyBoxRepository, inMemoryStore, resetStore } from "../../../test";
+import { getTestRepository, inMemoryStore, resetStore } from "../../../test";
 import { winston } from "../../../logger";
 
 jest.mock("../../../support", () => ({
@@ -18,7 +18,7 @@ describe("changeUsername", () => {
   beforeEach(async () => {
     ctx = {
       logger: winston,
-      repository: await getGreyBoxRepository(),
+      repository: await getTestRepository(),
       token: { bearer: { scope: [Scope.DEFAULT, Scope.EDIT].join(" ") } },
     };
 

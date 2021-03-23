@@ -1,6 +1,6 @@
 import MockDate from "mockdate";
 import { Identity } from "../../../entity";
-import { getGreyBoxRepository, inMemoryStore, resetStore } from "../../../test";
+import { getTestRepository, inMemoryStore, resetStore } from "../../../test";
 import { Scope } from "@lindorm-io/jwt";
 import { updateIdentity } from "./update-identity";
 import { winston } from "../../../logger";
@@ -17,7 +17,7 @@ describe("updateIdentity", () => {
   beforeEach(async () => {
     ctx = {
       logger: winston,
-      repository: await getGreyBoxRepository(),
+      repository: await getTestRepository(),
       token: { bearer: { scope: [Scope.DEFAULT, Scope.EDIT].join(" ") } },
     };
 

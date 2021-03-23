@@ -1,6 +1,6 @@
 import MockDate from "mockdate";
 import { Identity } from "../../../entity";
-import { getGreyBoxRepository, resetStore } from "../../../test";
+import { getTestRepository, resetStore } from "../../../test";
 import { getOpenIdInformation } from "./get-open-id-information";
 import { winston } from "../../../logger";
 
@@ -20,7 +20,7 @@ describe("getOpenIdInformation", () => {
   beforeEach(async () => {
     ctx = {
       logger: winston,
-      repository: await getGreyBoxRepository(),
+      repository: await getTestRepository(),
       token: { bearer: { scope: "scope" } },
     };
 

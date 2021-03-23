@@ -1,6 +1,6 @@
 import MockDate from "mockdate";
 import { getDisplayNameObject, getDisplayNameString } from "./get-display-name";
-import { getGreyBoxRepository, inMemoryStore } from "../../test/grey-box";
+import { getTestRepository, inMemoryStore } from "../../test/grey-box";
 
 jest.mock("uuid", () => ({
   v4: jest.fn(() => "be3a62d1-24a0-401c-96dd-3aff95356811"),
@@ -16,7 +16,7 @@ describe("getDisplayName", () => {
 
   beforeEach(async () => {
     ctx = {
-      repository: await getGreyBoxRepository(),
+      repository: await getTestRepository(),
     };
   });
 

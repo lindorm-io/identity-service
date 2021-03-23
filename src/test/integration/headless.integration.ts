@@ -2,8 +2,8 @@ import MockDate from "mockdate";
 import request from "supertest";
 import { Identity } from "../../entity";
 import { baseHash } from "@lindorm-io/core";
-import { getGreyBoxIdentity, inMemoryStore, setupIntegration, TEST_IDENTITY_REPOSITORY } from "../grey-box";
 import { koa } from "../../server/koa";
+import { getTestIdentity, inMemoryStore, resetStore, setupIntegration, TEST_IDENTITY_REPOSITORY } from "../grey-box";
 
 jest.mock("uuid", () => ({
   v4: jest.fn(() => "e3926ddb-ecaf-4f66-855a-d143af54953c"),
@@ -22,9 +22,10 @@ describe("/headless", () => {
   });
 
   beforeEach(async () => {
-    identity = getGreyBoxIdentity();
-    await TEST_IDENTITY_REPOSITORY.create(identity);
+    identity = await TEST_IDENTITY_REPOSITORY.create(getTestIdentity());
   });
+
+  afterEach(resetStore);
 
   test("POST /:id - should create", async () => {
     const response = await request(koa.callback())

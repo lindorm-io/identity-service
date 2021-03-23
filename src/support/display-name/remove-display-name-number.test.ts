@@ -1,6 +1,6 @@
 import MockDate from "mockdate";
 import { DisplayName } from "../../entity";
-import { getGreyBoxRepository, inMemoryStore } from "../../test/grey-box";
+import { getTestRepository, inMemoryStore } from "../../test/grey-box";
 import { removeDisplayNameNumber } from "./remove-display-name-number";
 
 jest.mock("uuid", () => ({
@@ -14,7 +14,7 @@ describe("removeDisplayNameNumber", () => {
 
   beforeEach(async () => {
     ctx = {
-      repository: await getGreyBoxRepository(),
+      repository: await getTestRepository(),
     };
 
     await ctx.repository.displayName.create(new DisplayName({ name: "mockName", numbers: [1111, 2222, 3333, 4444] }));

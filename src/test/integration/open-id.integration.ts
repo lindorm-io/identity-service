@@ -3,14 +3,16 @@ import request from "supertest";
 import { Audience } from "../../enum";
 import { Identity } from "../../entity";
 import { Permission, Scope } from "@lindorm-io/jwt";
+import { koa } from "../../server/koa";
 import {
-  getGreyBoxIdentity,
+  generateAccessToken,
+  getTestIdentity,
   inMemoryStore,
+  resetStore,
   setupIntegration,
   TEST_IDENTITY_REPOSITORY,
-  TEST_ISSUER,
+  TEST_TOKEN_ISSUER,
 } from "../grey-box";
-import { koa } from "../../server/koa";
 
 jest.mock("uuid", () => ({
   v4: jest.fn(() => "e3926ddb-ecaf-4f66-855a-d143af54953c"),
@@ -28,17 +30,18 @@ describe("/open-id", () => {
   });
 
   beforeEach(async () => {
-    identity = getGreyBoxIdentity();
-    await TEST_IDENTITY_REPOSITORY.create(identity);
-
-    ({ token: accessToken } = TEST_ISSUER.sign({
-      audience: Audience.ACCESS,
-      expiry: "2 minutes",
-      permission: Permission.ADMIN,
-      scope: [Scope.DEFAULT, Scope.OPENID, Scope.ADDRESS, Scope.BIRTH_DATE, Scope.PROFILE, Scope.ZONE_INFO].join(" "),
-      subject: identity.id,
-    }));
+    identity = await TEST_IDENTITY_REPOSITORY.create(getTestIdentity());
+    accessToken = generateAccessToken(identity, [
+      Scope.DEFAULT,
+      Scope.OPENID,
+      Scope.ADDRESS,
+      Scope.BIRTH_DATE,
+      Scope.PROFILE,
+      Scope.ZONE_INFO,
+    ]);
   });
+
+  afterEach(resetStore);
 
   test("GET /open-id/:id - should return identity information", async () => {
     const response = await request(koa.callback())
@@ -53,7 +56,7 @@ describe("/open-id", () => {
   });
 
   test("GET /open-id/:id - should throw error on wrong scope", async () => {
-    ({ token: accessToken } = TEST_ISSUER.sign({
+    ({ token: accessToken } = TEST_TOKEN_ISSUER.sign({
       audience: Audience.ACCESS,
       expiry: "2 minutes",
       permission: Permission.ADMIN,

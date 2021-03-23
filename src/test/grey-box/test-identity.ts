@@ -1,6 +1,6 @@
 import { Identity } from "../../entity";
 
-export const getGreyBoxIdentity = () =>
+export const getTestIdentity = (): Identity =>
   new Identity({
     address: {
       country: "country",

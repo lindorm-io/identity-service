@@ -1,7 +1,7 @@
 import MockDate from "mockdate";
 import { Identity } from "../../../entity";
 import { changeAddress } from "./change-address";
-import { getGreyBoxRepository, inMemoryStore, resetStore } from "../../../test";
+import { getTestRepository, inMemoryStore, resetStore } from "../../../test";
 import { Scope } from "@lindorm-io/jwt";
 import { winston } from "../../../logger";
 
@@ -17,7 +17,7 @@ describe("changeAddress", () => {
   beforeEach(async () => {
     ctx = {
       logger: winston,
-      repository: await getGreyBoxRepository(),
+      repository: await getTestRepository(),
       token: { bearer: { scope: [Scope.DEFAULT, Scope.EDIT].join(" ") } },
     };
 
