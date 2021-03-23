@@ -1,5 +1,5 @@
 import { DisplayNameEvent } from "../enum";
-import { EntityBase, EntityCreationError, IEntity, IEntityBaseOptions } from "@lindorm-io/core";
+import { EntityBase, EntityCreationError, IEntity, IEntityBaseOptions } from "@lindorm-io/entity";
 import { includes } from "lodash";
 
 export interface IDisplayName extends IEntity {

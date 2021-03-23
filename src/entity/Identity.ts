@@ -1,4 +1,4 @@
-import { EntityBase, EntityCreationError, IEntity, IEntityBaseOptions } from "@lindorm-io/core";
+import { EntityBase, EntityCreationError, IEntity, IEntityBaseOptions } from "@lindorm-io/entity";
 import { IdentityEvent } from "../enum";
 
 export interface IIdentityAddress {
