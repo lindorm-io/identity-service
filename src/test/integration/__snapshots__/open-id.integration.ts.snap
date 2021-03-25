@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`/open-id GET /open-id/:id - should return identity information 1`] = `
+exports[`/open-id GET /open-id - should return identity information 1`] = `
 Object {
   "address": Object {
     "country": "country",
@@ -17,7 +17,7 @@ Object {
 }
 `;
 
-exports[`/open-id GET /open-id/:id - should return identity information 2`] = `
+exports[`/open-id GET /open-id - should return identity information 2`] = `
 Object {
   "identity": Object {
     "identity": Object {
@@ -105,6 +105,25 @@ Object {
   },
 }
 `;
+
+exports[`/open-id GET /open-id/:id - should return identity information for a specific identity 1`] = `
+Object {
+  "address": Object {
+    "country": "country",
+    "locality": "locality",
+    "postal_code": "postalCode",
+    "region": "region",
+    "street_address": "streetAddress",
+  },
+  "birth_date": "2000-01-01",
+  "display_name": "displayName#1234",
+  "gravatar": "https://gravatar.url/",
+  "profile": "https://profile.url/",
+  "zone_info": "Europe/Stockholm",
+}
+`;
+
+exports[`/open-id GET /open-id/:id - should return identity information for a specific identity 2`] = `Object {}`;
 
 exports[`/open-id GET /open-id/:id - should throw error on wrong scope 1`] = `
 Object {

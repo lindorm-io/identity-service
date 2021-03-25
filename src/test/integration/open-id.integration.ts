@@ -43,7 +43,19 @@ describe("/open-id", () => {
 
   afterEach(resetStore);
 
-  test("GET /open-id/:id - should return identity information", async () => {
+  test("GET /open-id - should return identity information", async () => {
+    const response = await request(koa.callback())
+      .get(`/open-id`)
+      .set("Authorization", `Bearer ${accessToken}`)
+      .set("X-Client-ID", "5c63ca22-6617-45eb-9005-7c897a25d375")
+      .set("X-Correlation-ID", "5c63ca22-6617-45eb-9005-7c897a25d375")
+      .expect(200);
+
+    expect(response.body).toMatchSnapshot();
+    expect(inMemoryStore).toMatchSnapshot();
+  });
+
+  test("GET /open-id/:id - should return identity information for a specific identity", async () => {
     const response = await request(koa.callback())
       .get(`/open-id/${identity.id}`)
       .set("Authorization", `Bearer ${accessToken}`)

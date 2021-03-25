@@ -10,6 +10,20 @@ export const router = new Router();
 router.use(bearerAuthMiddleware(BEARER_AUTH_MW_OPTIONS));
 
 router.get(
+  "/",
+  async (ctx: IKoaIdentityContext): Promise<void> => {
+    const {
+      token: {
+        bearer: { subject },
+      },
+    } = ctx;
+
+    ctx.body = await getOpenIdInformation(ctx)({ identityId: subject });
+    ctx.status = HttpStatus.Success.OK;
+  },
+);
+
+router.get(
   "/:id",
   async (ctx: IKoaIdentityContext): Promise<void> => {
     const identityId = ctx.params.id;
