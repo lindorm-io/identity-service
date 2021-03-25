@@ -2,6 +2,7 @@ import { Identity } from "../../entity";
 
 export const getTestIdentity = (): Identity =>
   new Identity({
+    id: "b24c6bfe-8e30-4f02-9c92-f7eca5c3b1b1",
     address: {
       country: "country",
       locality: "locality",
