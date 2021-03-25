@@ -1,12 +1,13 @@
 import MockDate from "mockdate";
-import { Identity } from "../../../entity";
-import { getTestRepository, resetStore } from "../../../test";
+import { getTestIdentity, getTestRepository, resetStore } from "../../../test";
 import { getOpenIdInformation } from "./get-open-id-information";
 import { winston } from "../../../logger";
+import { Identity } from "../../../entity";
+import { Scope } from "@lindorm-io/jwt";
 
 jest.mock("../../../support", () => ({
-  ...jest.requireActual("../../../support"),
   assertAccountPermission: jest.fn(() => () => undefined),
+  getDisplayNameString: jest.fn(() => "display-name-string"),
   getOpenIdClaims: jest.fn(() => ({
     openId: "mock-open-id-data",
   })),
@@ -15,59 +16,27 @@ jest.mock("../../../support", () => ({
 MockDate.set("2020-01-01 08:00:00.000");
 
 describe("getOpenIdInformation", () => {
+  let identity: Identity;
+  let options: any;
   let ctx: any;
 
   beforeEach(async () => {
     ctx = {
       logger: winston,
       repository: await getTestRepository(),
-      token: { bearer: { scope: "scope" } },
+      token: { bearer: { scope: [Scope.DEFAULT, Scope.OPENID, Scope.EMAIL, Scope.PROFILE].join(" ") } },
     };
 
-    await ctx.repository.identity.create(
-      new Identity({
-        id: "fd4e3548-1279-4065-9671-74c3bbea0c25",
-        address: {
-          country: "country",
-          locality: "locality",
-          postalCode: "postalCode",
-          region: "region",
-          streetAddress: "streetAddress",
-        },
-        birthDate: "2000-01-01",
-        displayName: {
-          name: "displayName",
-          number: 1234,
-        },
-        familyName: "familyName",
-        gender: "gender",
-        givenName: "givenName",
-        gravatar: "https://gravatar.url/",
-        locale: "sv-SE",
-        middleName: "middleName",
-        nickname: "nickname",
-        phoneNumber: "+46700000000",
-        phoneNumberVerified: true,
-        picture: "https://picture.url/",
-        preferredUsername: "preferredUsername",
-        profile: "https://profile.url/",
-        username: "username",
-        website: "https://website.url/",
-        zoneInfo: "Europe/Stockholm",
-      }),
-    );
+    identity = await ctx.repository.identity.create(getTestIdentity());
+
+    options = {
+      identityId: identity.id,
+    };
   });
 
-  afterEach(() => {
-    resetStore();
-    jest.clearAllMocks();
-  });
+  afterEach(resetStore);
 
   test("should return identity information", async () => {
-    const options = {
-      identityId: "fd4e3548-1279-4065-9671-74c3bbea0c25",
-    };
-
     await expect(getOpenIdInformation(ctx)(options)).resolves.toMatchSnapshot();
   });
 });

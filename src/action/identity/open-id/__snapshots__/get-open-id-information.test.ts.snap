@@ -2,7 +2,7 @@
 
 exports[`getOpenIdInformation should return identity information 1`] = `
 Object {
-  "displayName": "displayName#1234",
+  "displayName": "display-name-string",
   "gravatar": "https://gravatar.url/",
   "openId": "mock-open-id-data",
 }

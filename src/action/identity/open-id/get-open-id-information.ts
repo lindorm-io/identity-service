@@ -28,6 +28,7 @@ export const getOpenIdInformation = (ctx: IKoaIdentityContext) => async (
 
   logger.debug("requesting open id information", {
     identityId,
+    scope,
   });
 
   await assertAccountPermission(ctx)(identityId);
