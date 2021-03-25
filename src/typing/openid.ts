@@ -1,7 +1,11 @@
-import { IIdentityAddress } from "../entity";
-
 export interface IOpenIdStandardClaim {
-  address?: IIdentityAddress;
+  address?: {
+    country?: string;
+    locality?: string;
+    postalCode?: string;
+    region?: string;
+    streetAddress?: string;
+  };
   birthDate?: string;
   email?: string;
   familyName?: string;
