@@ -45,7 +45,7 @@ describe("/private", () => {
 
   afterEach(resetStore);
 
-  test.only("PATCH /:id - should update", async () => {
+  test("PATCH /:id - should update", async () => {
     await request(koa.callback())
       .patch(`/private/${identity.id}`)
       .set("Authorization", `Bearer ${accessToken}`)
