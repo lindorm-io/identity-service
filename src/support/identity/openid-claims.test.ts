@@ -49,14 +49,11 @@ describe("getIdentityOpenId", () => {
 
   test("should return claims based on scope", () => {
     expect(
-      getOpenIdClaims(
-        identity,
-        [Scope.OPENID, Scope.ADDRESS, Scope.GIVEN_NAME, Scope.MIDDLE_NAME, Scope.FAMILY_NAME].join(" "),
-      ),
+      getOpenIdClaims(identity, [Scope.OPENID, Scope.ADDRESS, Scope.GIVEN_NAME, Scope.MIDDLE_NAME, Scope.FAMILY_NAME]),
     ).toMatchSnapshot();
   });
 
   test("should return an empty object on unknown scope", () => {
-    expect(getOpenIdClaims(identity, [Scope.OPENID, "unknown"].join(" "))).toMatchSnapshot();
+    expect(getOpenIdClaims(identity, [Scope.OPENID, "unknown"])).toMatchSnapshot();
   });
 });

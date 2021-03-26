@@ -58,15 +58,14 @@ const getClaim = (identity: Identity, scope: Scope): IOpenIdClaim => {
   }
 };
 
-export const getOpenIdClaims = (identity: Identity, scope: string): IOpenIdClaim => {
+export const getOpenIdClaims = (identity: Identity, scope: Array<string>): IOpenIdClaim => {
   if (!isScope(scope, Scope.OPENID)) {
     throw new InvalidPermissionError();
   }
 
-  const array = scope.split(" ") as Array<Scope>;
   let result: IOpenIdClaim = {};
 
-  for (const item of array) {
+  for (const item of scope as Array<Scope>) {
     result = {
       ...result,
       ...getClaim(identity, item),

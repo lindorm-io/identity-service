@@ -18,7 +18,7 @@ describe("removeIdentity", () => {
     ctx = {
       logger: winston,
       repository: await getTestRepository(),
-      token: { bearer: { scope: [Scope.DEFAULT, Scope.EDIT].join(" ") } },
+      token: { bearer: { scope: [Scope.DEFAULT, Scope.EDIT] } },
     };
 
     await ctx.repository.identity.create(

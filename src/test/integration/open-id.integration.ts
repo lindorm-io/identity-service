@@ -72,7 +72,7 @@ describe("/open-id", () => {
       audience: Audience.ACCESS,
       expiry: "2 minutes",
       permission: Permission.ADMIN,
-      scope: ["wrong"].join(" "),
+      scope: ["wrong"],
       subject: identity.id,
     }));
 

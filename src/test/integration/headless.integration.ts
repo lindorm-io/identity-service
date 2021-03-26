@@ -69,7 +69,7 @@ describe("/headless", () => {
           Scope.PROFILE,
           Scope.USERNAME,
           Scope.ZONE_INFO,
-        ].join(" "),
+        ],
       })
       .expect(200);
 

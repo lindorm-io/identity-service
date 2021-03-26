@@ -4,7 +4,7 @@ import { getDisplayNameString, getOpenIdClaims as _getOpenIdClaims } from "../..
 
 export interface IGetOpenIdInformationOptions {
   identityId: string;
-  scope: string;
+  scope: Array<string>;
 }
 
 export interface IGetOpenIdInformationData extends IOpenIdClaim {
@@ -14,7 +14,7 @@ export interface IGetOpenIdInformationData extends IOpenIdClaim {
 
 const schema = Joi.object({
   identityId: Joi.string().guid().required(),
-  scope: Joi.string().required(),
+  scope: Joi.array().required(),
 });
 
 export const getOpenIdClaims = (ctx: IKoaIdentityContext) => async (

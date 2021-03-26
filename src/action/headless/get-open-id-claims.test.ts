@@ -29,7 +29,7 @@ describe("getOpenIdClaims", () => {
 
     options = {
       identityId: identity.id,
-      scope: [Scope.DEFAULT, Scope.OPENID, Scope.PREFERRED_USERNAME, Scope.EMAIL].join(" "),
+      scope: [Scope.DEFAULT, Scope.OPENID, Scope.PREFERRED_USERNAME, Scope.EMAIL],
     };
   });
 

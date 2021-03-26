@@ -8,7 +8,7 @@ export const generateAccessToken = (identity: Identity, scope: Array<Scope>): st
     audience: Audience.ACCESS,
     expiry: "2 minutes",
     permission: Permission.ADMIN,
-    scope: scope.join(" "),
+    scope: scope,
     subject: identity.id,
   });
   return token;

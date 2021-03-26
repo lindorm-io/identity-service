@@ -24,7 +24,7 @@ describe("getOpenIdInformation", () => {
     ctx = {
       logger: winston,
       repository: await getTestRepository(),
-      token: { bearer: { scope: [Scope.DEFAULT, Scope.OPENID, Scope.EMAIL, Scope.PROFILE].join(" ") } },
+      token: { bearer: { scope: [Scope.DEFAULT, Scope.OPENID, Scope.EMAIL, Scope.PROFILE] } },
     };
 
     identity = await ctx.repository.identity.create(getTestIdentity());
