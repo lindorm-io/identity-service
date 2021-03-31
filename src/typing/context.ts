@@ -1,16 +1,25 @@
-import { DisplayNameRepository } from "../infrastructure/display-name";
+import { DisplayNameRepository, IdentityRepository } from "../infrastructure";
 import { IKoaAppContext } from "@lindorm-io/koa";
 import { ITokenIssuerVerifyData, TokenIssuer } from "@lindorm-io/jwt";
-import { IdentityRepository } from "../infrastructure/identity";
 import { Keystore } from "@lindorm-io/key-pair";
 import { MongoConnection } from "@lindorm-io/mongo";
+import { KeyPairCache } from "@lindorm-io/koa-keystore";
+import { RedisConnection } from "@lindorm-io/redis";
 
 export interface IKoaIdentityContext extends IKoaAppContext {
-  issuer: {
-    tokenIssuer: TokenIssuer;
+  cache: {
+    keyPair: {
+      auth: KeyPairCache;
+    };
   };
-  keystore: Keystore;
+  issuer: {
+    auth: TokenIssuer;
+  };
+  keystore: {
+    auth: Keystore;
+  };
   mongo: MongoConnection;
+  redis: RedisConnection;
   repository: {
     displayName: DisplayNameRepository;
     identity: IdentityRepository;

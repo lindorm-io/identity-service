@@ -8,9 +8,10 @@ export const stagingConfig: IConfigurationData = {
   BASIC_AUTH_USERNAME: null,
   BASIC_AUTH_PASSWORD: null,
 
-  JWT_ISSUER: "https://staging.authentication.lindorm.io",
+  AUTH_JWT_ISSUER: "https://staging.authentication.lindorm.io",
+  AUTH_WEB_KEY_HOST: "https://staging.authentication.lindorm.io",
 
-  WEB_KEY_HOST: "https://staging.authentication.lindorm.io",
+  REDIS_PORT: 6379,
 
   MONGO_INITDB_ROOT_USERNAME: null,
   MONGO_INITDB_ROOT_PASSWORD: null,

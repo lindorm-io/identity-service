@@ -1,4 +1,4 @@
-import { BASIC_AUTH_MW_OPTIONS } from "../config";
+import { BASIC_AUTH_CLIENTS } from "../config";
 import { HttpStatus } from "@lindorm-io/core";
 import { IKoaIdentityContext } from "../typing";
 import { Router } from "@lindorm-io/koa";
@@ -8,7 +8,7 @@ import { getOpenIdClaims } from "../action/headless/get-open-id-claims";
 
 export const router = new Router();
 
-router.use(basicAuthMiddleware(BASIC_AUTH_MW_OPTIONS));
+router.use(basicAuthMiddleware(BASIC_AUTH_CLIENTS));
 
 router.post(
   "/create/:id",

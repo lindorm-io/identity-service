@@ -8,9 +8,10 @@ export const developmentConfig: IConfigurationData = {
   BASIC_AUTH_USERNAME: "secret",
   BASIC_AUTH_PASSWORD: "secret",
 
-  JWT_ISSUER: "https://dev.authentication.lindorm.io",
+  AUTH_JWT_ISSUER: "https://dev.authentication.lindorm.io",
+  AUTH_WEB_KEY_HOST: "http://localhost:3001",
 
-  WEB_KEY_HOST: "http://localhost:3001",
+  REDIS_PORT: 6379,
 
   MONGO_INITDB_ROOT_USERNAME: "root",
   MONGO_INITDB_ROOT_PASSWORD: "example",

@@ -11,9 +11,10 @@ export const environmentConfig: IConfigurationData = {
   BASIC_AUTH_USERNAME: process.env.BASIC_AUTH_USERNAME,
   BASIC_AUTH_PASSWORD: process.env.BASIC_AUTH_PASSWORD,
 
-  JWT_ISSUER: process.env.JWT_ISSUER,
+  AUTH_JWT_ISSUER: process.env.AUTH_JWT_ISSUER,
+  AUTH_WEB_KEY_HOST: process.env.AUTH_WEB_KEY_HOST,
 
-  WEB_KEY_HOST: process.env.WEB_KEY_HOST,
+  REDIS_PORT: process.env.REDIS_PORT ? parseInt(process.env.REDIS_PORT, 10) : null,
 
   MONGO_INITDB_ROOT_USERNAME: process.env.MONGO_INITDB_ROOT_USERNAME,
   MONGO_INITDB_ROOT_PASSWORD: process.env.MONGO_INITDB_ROOT_PASSWORD,

@@ -4,12 +4,16 @@ export interface IConfigurationData extends IConfigurationDataBase {
   SERVER_PORT: number;
   HOST: string;
 
+  // Auth
   BASIC_AUTH_USERNAME: string;
   BASIC_AUTH_PASSWORD: string;
 
-  JWT_ISSUER: string;
+  // Auth Tokens
+  AUTH_JWT_ISSUER: string;
+  AUTH_WEB_KEY_HOST: string;
 
-  WEB_KEY_HOST: string;
+  // Infrastructure
+  REDIS_PORT: number;
 
   MONGO_INITDB_ROOT_USERNAME: string;
   MONGO_INITDB_ROOT_PASSWORD: string;

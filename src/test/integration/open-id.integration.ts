@@ -11,7 +11,7 @@ import {
   resetStore,
   setupIntegration,
   TEST_IDENTITY_REPOSITORY,
-  TEST_TOKEN_ISSUER,
+  TEST_AUTH_TOKEN_ISSUER,
 } from "../grey-box";
 
 jest.mock("uuid", () => ({
@@ -68,7 +68,7 @@ describe("/open-id", () => {
   });
 
   test("GET /open-id/:id - should throw error on wrong scope", async () => {
-    ({ token: accessToken } = TEST_TOKEN_ISSUER.sign({
+    ({ token: accessToken } = TEST_AUTH_TOKEN_ISSUER.sign({
       audience: Audience.ACCESS,
       expiry: "2 minutes",
       permission: Permission.ADMIN,

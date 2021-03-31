@@ -8,13 +8,14 @@ export const productionConfig: IConfigurationData = {
   BASIC_AUTH_USERNAME: null,
   BASIC_AUTH_PASSWORD: null,
 
-  JWT_ISSUER: "https://authentication.lindorm.io",
+  AUTH_JWT_ISSUER: "https://authentication.lindorm.io",
+  AUTH_WEB_KEY_HOST: "https://authentication.lindorm.io",
 
-  WEB_KEY_HOST: null,
+  REDIS_PORT: null,
 
   MONGO_INITDB_ROOT_USERNAME: null,
   MONGO_INITDB_ROOT_PASSWORD: null,
   MONGO_HOST: null,
   MONGO_EXPOSE_PORT: null,
-  MONGO_DB_NAME: null,
+  MONGO_DB_NAME: "identity",
 };

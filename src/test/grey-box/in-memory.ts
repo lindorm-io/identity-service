@@ -1,10 +1,8 @@
-import { KeyPair } from "@lindorm-io/key-pair";
-
-export let inMemoryKeys: Array<KeyPair> = [];
+export let inMemoryCache: Record<string, any> = {};
 export let inMemoryStore: Record<string, any> = {};
 
-export const resetKeys = (): void => {
-  inMemoryKeys = [];
+export const resetCache = (): void => {
+  inMemoryCache = {};
 };
 
 export const resetStore = (): void => {

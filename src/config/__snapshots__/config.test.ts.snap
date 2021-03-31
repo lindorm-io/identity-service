@@ -2,7 +2,7 @@
 
 exports[`config should provide configuration 1`] = `
 Object {
-  "BASIC_AUTH_MW_OPTIONS": Object {
+  "BASIC_AUTH_CLIENTS": Object {
     "clients": Array [
       Object {
         "password": "secret",
@@ -10,11 +10,6 @@ Object {
       },
     ],
   },
-  "BEARER_AUTH_MW_OPTIONS": Object {
-    "audience": "access",
-    "issuer": "https://test.authentication.lindorm.io",
-  },
-  "HOST": "https://test.identity.lindorm.io",
   "IS_TEST": true,
   "MONGO_CONNECTION_OPTIONS": Object {
     "auth": Object {
@@ -29,12 +24,24 @@ Object {
     },
   },
   "NODE_ENVIRONMENT": "test",
-  "SERVER_PORT": 3000,
-  "TOKEN_ISSUER_MW_OPTIONS": Object {
-    "issuer": "https://test.authentication.lindorm.io",
+  "REDIS_CONNECTION_OPTIONS": Object {
+    "port": 6379,
+    "type": "CACHE",
   },
-  "WEB_KEY_MW_OPTIONS": Object {
-    "host": "https://test.authentication.lindorm.io",
+  "config": Object {
+    "AUTH_JWT_ISSUER": "https://test.authentication.lindorm.io",
+    "AUTH_WEB_KEY_HOST": "https://test.authentication.lindorm.io",
+    "BASIC_AUTH_PASSWORD": "secret",
+    "BASIC_AUTH_USERNAME": "secret",
+    "HOST": "https://test.identity.lindorm.io",
+    "MONGO_DB_NAME": "identity",
+    "MONGO_EXPOSE_PORT": 27017,
+    "MONGO_HOST": "localhost",
+    "MONGO_INITDB_ROOT_PASSWORD": "example",
+    "MONGO_INITDB_ROOT_USERNAME": "root",
+    "NODE_ENVIRONMENT": "test",
+    "REDIS_PORT": 6379,
+    "SERVER_PORT": 3000,
   },
 }
 `;
