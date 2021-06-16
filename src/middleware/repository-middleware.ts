@@ -1,23 +1,6 @@
 import { DisplayNameRepository, IdentityRepository } from "../infrastructure";
-import { IKoaIdentityContext, TNext } from "../typing";
+import { repositoryMiddleware } from "@lindorm-io/koa-mongo";
 
-export const repositoryMiddleware = async (ctx: IKoaIdentityContext, next: TNext): Promise<void> => {
-  const start = Date.now();
+export const displayNameRepositoryMiddleware = repositoryMiddleware(DisplayNameRepository);
 
-  const { logger, mongo } = ctx;
-  const db = await mongo.getDatabase();
-
-  ctx.repository = {
-    displayName: new DisplayNameRepository({ db, logger }),
-    identity: new IdentityRepository({ db, logger }),
-  };
-
-  logger.debug("repositories connected");
-
-  ctx.metrics = {
-    ...(ctx.metrics || {}),
-    repository: Date.now() - start,
-  };
-
-  await next();
-};
+export const identityRepositoryMiddleware = repositoryMiddleware(IdentityRepository);

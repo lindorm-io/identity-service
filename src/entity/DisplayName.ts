@@ -1,65 +1,86 @@
+import Joi from "joi";
 import { DisplayNameEvent } from "../enum";
-import { EntityBase, EntityCreationError, IEntity, IEntityBaseOptions } from "@lindorm-io/entity";
-import { includes } from "lodash";
+import { LindormError } from "@lindorm-io/errors";
+import { includes, remove } from "lodash";
+import {
+  EntityAttributes,
+  EntityCreationError,
+  EntityOptions,
+  JOI_ENTITY_BASE,
+  LindormEntity,
+} from "@lindorm-io/entity";
 
-export interface IDisplayName extends IEntity {
+export interface DisplayNameAttributes extends EntityAttributes {
   name: string;
   numbers: Array<number>;
 }
 
-export interface IDisplayNameOptions extends IEntityBaseOptions {
+export interface DisplayNameOptions extends EntityOptions {
   name: string;
   numbers?: Array<number>;
 }
 
-export class DisplayName extends EntityBase {
-  private _name: string;
-  private _numbers: Array<number>;
+const schema = Joi.object({
+  ...JOI_ENTITY_BASE,
 
-  constructor(options: IDisplayNameOptions) {
+  name: Joi.string().required(),
+  numbers: Joi.array().items(Joi.number()).required(),
+});
+
+export class DisplayName extends LindormEntity<DisplayNameAttributes> {
+  public readonly name: string;
+  public readonly numbers: Array<number>;
+
+  public constructor(options: DisplayNameOptions) {
     super(options);
-    this._name = options.name;
-    this._numbers = options.numbers || [];
-  }
 
-  public get name(): string {
-    return this._name;
-  }
-
-  public get numbers(): Array<number> {
-    return this._numbers;
+    this.name = options.name;
+    this.numbers = options.numbers || [];
   }
 
   public add(number: number): void {
-    if (includes(this._numbers, number)) {
-      throw new Error("Number already exists for this DisplayName");
+    if (includes(this.numbers, number)) {
+      throw new LindormError("Number already exists for this DisplayName");
     }
 
-    this._numbers.push(number);
+    this.numbers.push(number);
     this.addEvent(DisplayNameEvent.NUMBER_ADDED, { number });
   }
 
   public remove(number: number): void {
-    const array: Array<number> = [];
+    remove(this.numbers, number);
 
-    for (const item of this._numbers) {
-      if (item === number) continue;
-      array.push(item);
-    }
-
-    this._numbers = array;
     this.addEvent(DisplayNameEvent.NUMBER_REMOVED, { number });
   }
 
+  public exists(number: number): boolean {
+    return includes(this.numbers, number);
+  }
+
   public create(): void {
-    for (const evt of this._events) {
+    for (const evt of this.events) {
       if (evt.name !== DisplayNameEvent.CREATED) continue;
       throw new EntityCreationError("DisplayName");
     }
 
-    this.addEvent(DisplayNameEvent.CREATED, {
-      name: this._name,
-      numbers: this._numbers,
-    });
+    const { events, ...rest } = this.toJSON();
+    this.addEvent(DisplayNameEvent.CREATED, rest);
+  }
+
+  public getKey(): string {
+    return this.id;
+  }
+
+  public async schemaValidation(): Promise<void> {
+    await schema.validateAsync(this.toJSON());
+  }
+
+  public toJSON(): DisplayNameAttributes {
+    return {
+      ...this.defaultJSON(),
+
+      name: this.name,
+      numbers: this.numbers,
+    };
   }
 }

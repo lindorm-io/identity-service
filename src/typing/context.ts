@@ -1,30 +1,32 @@
+import { DisplayName, Identity } from "../entity";
 import { DisplayNameRepository, IdentityRepository } from "../infrastructure";
-import { IKoaAppContext } from "@lindorm-io/koa";
-import { ITokenIssuerVerifyData, TokenIssuer } from "@lindorm-io/jwt";
-import { Keystore } from "@lindorm-io/key-pair";
-import { MongoConnection } from "@lindorm-io/mongo";
+import { IssuerVerifyData, TokenIssuer } from "@lindorm-io/jwt";
+import { KeyPair, Keystore } from "@lindorm-io/key-pair";
 import { KeyPairCache } from "@lindorm-io/koa-keystore";
+import { KoaContext } from "@lindorm-io/koa";
+import { MongoConnection } from "@lindorm-io/mongo";
 import { RedisConnection } from "@lindorm-io/redis";
 
-export interface IKoaIdentityContext extends IKoaAppContext {
+export interface IdentityContext<Body = Record<string, any>> extends KoaContext<Body> {
   cache: {
-    keyPair: {
-      auth: KeyPairCache;
-    };
+    keyPairCache: KeyPairCache;
   };
-  issuer: {
-    auth: TokenIssuer;
+  client: {
+    mongo: MongoConnection;
+    redis: RedisConnection;
   };
-  keystore: {
-    auth: Keystore;
+  entity: {
+    displayName: DisplayName;
+    identity: Identity;
   };
-  mongo: MongoConnection;
-  redis: RedisConnection;
+  jwt: TokenIssuer;
+  keys: Array<KeyPair>;
+  keystore: Keystore;
   repository: {
-    displayName: DisplayNameRepository;
-    identity: IdentityRepository;
+    displayNameRepository: DisplayNameRepository;
+    identityRepository: IdentityRepository;
   };
   token: {
-    bearer: ITokenIssuerVerifyData;
+    bearerToken: IssuerVerifyData<unknown>;
   };
 }

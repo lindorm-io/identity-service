@@ -1,4 +1,4 @@
-export interface IOpenIdStandardClaim {
+export interface OpenIdStandardClaim {
   address?: {
     country?: string;
     locality?: string;
@@ -23,6 +23,6 @@ export interface IOpenIdStandardClaim {
   zoneInfo?: string;
 }
 
-export interface IOpenIdClaim extends IOpenIdStandardClaim {
+export interface OpenIdClaim extends OpenIdStandardClaim {
   username?: string;
 }

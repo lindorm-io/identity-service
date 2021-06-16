@@ -1,16 +1,6 @@
-import Joi from "@hapi/joi";
+import Joi from "joi";
 
-export const JOI_EVENTS = Joi.array()
-  .items(
-    Joi.object({
-      date: Joi.date().required(),
-      name: Joi.string().required(),
-      payload: Joi.object().required(),
-    }),
-  )
-  .required();
-
-export const JOI_ADDRESS = Joi.object({
+export const JOI_IDENTITY_ADDRESS = Joi.object({
   country: Joi.string().allow(null).required(),
   locality: Joi.string().allow(null).required(),
   postalCode: Joi.string().allow(null).required(),
@@ -18,12 +8,14 @@ export const JOI_ADDRESS = Joi.object({
   streetAddress: Joi.string().allow(null).required(),
 });
 
-export const JOI_DISPLAY_NAME_OBJECT = Joi.object({
-  name: Joi.string().required(),
-  number: Joi.number().required(),
+export const JOI_IDENTITY_DISPLAY_NAME = Joi.object({
+  name: Joi.string().allow(null).required(),
+  number: Joi.number().allow(null).required(),
 });
 
 export const JOI_DATE = Joi.string().regex(/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/);
+
+export const JOI_GUID = Joi.string().guid({ version: "uuidv4" });
 
 export const JOI_LOCALE = Joi.string().regex(/^[a-z]{2}-[A-Z]{2}$/);
 

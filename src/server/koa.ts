@@ -1,15 +1,16 @@
 import { KoaApp } from "@lindorm-io/koa";
-import { config, IS_TEST } from "../config";
-import { headless, openId, privateRoute, publicRoute } from "../route";
-import { winston } from "../logger";
 import { authJwksCacheWorker } from "../worker";
+import { cacheKeysMiddleware, keystoreMiddleware } from "@lindorm-io/koa-keystore";
+import { config, IS_TEST } from "../config";
+import { headlessRoute, identityRoute } from "../route";
+import { winston } from "../logger";
 import {
-  authKeyPairCacheMiddleware,
-  authKeystoreMiddleware,
-  authTokenIssuerMiddleware,
+  displayNameRepositoryMiddleware,
+  identityRepositoryMiddleware,
+  keyPairCacheMiddleware,
   mongoMiddleware,
   redisMiddleware,
-  repositoryMiddleware,
+  tokenIssuerMiddleware,
 } from "../middleware";
 
 export const koa = new KoaApp({
@@ -19,21 +20,21 @@ export const koa = new KoaApp({
 
 // mongo
 koa.addMiddleware(mongoMiddleware);
-koa.addMiddleware(repositoryMiddleware);
+koa.addMiddleware(displayNameRepositoryMiddleware);
+koa.addMiddleware(identityRepositoryMiddleware);
 
 // redis
 koa.addMiddleware(redisMiddleware);
-koa.addMiddleware(authKeyPairCacheMiddleware);
+koa.addMiddleware(keyPairCacheMiddleware);
 
-// auth tokens
-koa.addMiddleware(authKeystoreMiddleware);
-koa.addMiddleware(authTokenIssuerMiddleware);
+// jwt
+koa.addMiddleware(cacheKeysMiddleware);
+koa.addMiddleware(keystoreMiddleware);
+koa.addMiddleware(tokenIssuerMiddleware);
 
 // routes
-koa.addRoute("/headless", headless);
-koa.addRoute("/open-id", openId);
-koa.addRoute("/private", privateRoute);
-koa.addRoute("/public", publicRoute);
+koa.addRoute("/headless", headlessRoute);
+koa.addRoute("/identity", identityRoute);
 
 // workers
 if (!IS_TEST) {

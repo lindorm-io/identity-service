@@ -1,32 +1,34 @@
-import { BASIC_AUTH_CLIENTS } from "../config";
-import { HttpStatus } from "@lindorm-io/core";
-import { IKoaIdentityContext } from "../typing";
-import { Router } from "@lindorm-io/koa";
-import { basicAuthMiddleware } from "@lindorm-io/koa-basic-auth";
-import { ensureIdentityExists } from "../action";
-import { getOpenIdClaims } from "../action/headless/get-open-id-claims";
+import { IdentityContext } from "../typing";
+import { basicAuthMiddleware, identityEntityMiddleware } from "../middleware";
+import { createController, Router, schemaMiddleware } from "@lindorm-io/koa";
+import {
+  headlessCreateIdentity,
+  headlessCreateIdentitySchema,
+  headlessGetIdentity,
+  headlessGetIdentitySchema,
+} from "../controller";
+import { headlessRemoveIdentity, headlessRemoveIdentitySchema } from "../controller/headless/remove-identity";
 
-export const router = new Router();
+export const router = new Router<unknown, IdentityContext>();
 
-router.use(basicAuthMiddleware(BASIC_AUTH_CLIENTS));
+router.use(basicAuthMiddleware);
 
 router.post(
-  "/create/:id",
-  async (ctx: IKoaIdentityContext): Promise<void> => {
-    const identityId = ctx.params.id;
-
-    ctx.body = await ensureIdentityExists(ctx)({ identityId });
-    ctx.status = HttpStatus.Success.CREATED;
-  },
+  "/identity",
+  schemaMiddleware("request.body", headlessCreateIdentitySchema),
+  createController(headlessCreateIdentity),
 );
 
-router.post(
-  "/open-id/:id",
-  async (ctx: IKoaIdentityContext): Promise<void> => {
-    const identityId = ctx.params.id;
-    const { scope } = ctx.request.body;
+router.get(
+  "/identity/:id",
+  schemaMiddleware("params", headlessGetIdentitySchema),
+  identityEntityMiddleware("params.id"),
+  createController(headlessGetIdentity),
+);
 
-    ctx.body = await getOpenIdClaims(ctx)({ identityId, scope });
-    ctx.status = HttpStatus.Success.OK;
-  },
+router.delete(
+  "/identity/:id",
+  schemaMiddleware("params", headlessRemoveIdentitySchema),
+  identityEntityMiddleware("params.id"),
+  createController(headlessRemoveIdentity),
 );

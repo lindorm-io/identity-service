@@ -1,55 +1,57 @@
-import { EntityBase, EntityCreationError, IEntity, IEntityBaseOptions } from "@lindorm-io/entity";
-import { IdentityEvent } from "../enum";
+import Joi from "joi";
+import { DisplayNameEvent, IdentityEvent } from "../enum";
+import { JOI_IDENTITY_ADDRESS, JOI_IDENTITY_DISPLAY_NAME } from "../constant";
+import {
+  EntityAttributes,
+  EntityCreationError,
+  EntityOptions,
+  JOI_ENTITY_BASE,
+  LindormEntity,
+} from "@lindorm-io/entity";
 
-export interface IIdentityAddress {
-  country: string;
-  locality: string;
-  postalCode: string;
-  region: string;
-  streetAddress: string;
+export interface IdentityAddress {
+  country: string | null;
+  locality: string | null;
+  postalCode: string | null;
+  region: string | null;
+  streetAddress: string | null;
 }
 
-export interface IIdentityDisplayName {
-  name: string;
-  number: number;
+export interface IdentityDisplayName {
+  name: string | null;
+  number: number | null;
 }
 
-export interface IIdentity extends IEntity {
+export interface IdentityAttributes extends EntityAttributes {
   // public
-  displayName: IIdentityDisplayName;
-  gravatar: string;
-
-  // private
-  username: string;
+  displayName: IdentityDisplayName;
+  gravatar: string | null;
 
   // openid
-  address: IIdentityAddress;
-  birthDate: string;
-  familyName: string;
-  gender: string;
-  givenName: string;
-  locale: string;
-  middleName: string;
-  nickname: string;
-  phoneNumber: string;
+  address: IdentityAddress;
+  birthDate: string | null;
+  familyName: string | null;
+  gender: string | null;
+  givenName: string | null;
+  locale: string | null;
+  middleName: string | null;
+  nickname: string | null;
+  phoneNumber: string | null;
   phoneNumberVerified: boolean;
-  picture: string;
-  preferredUsername: string;
-  profile: string;
-  website: string;
-  zoneInfo: string;
+  picture: string | null;
+  preferredUsername: string | null;
+  profile: string | null;
+  website: string | null;
+  zoneInfo: string | null;
 }
 
-export interface IIdentityOptions extends IEntityBaseOptions {
+export interface IdentityOptions extends EntityOptions {
   // public
-  displayName?: IIdentityDisplayName;
+  displayName?: IdentityDisplayName;
   gravatar?: string;
 
-  // private
-  username?: string;
-
   // openid
-  address?: IIdentityAddress;
+  address?: IdentityAddress;
   birthDate?: string;
   familyName?: string;
   gender?: string;
@@ -66,10 +68,32 @@ export interface IIdentityOptions extends IEntityBaseOptions {
   zoneInfo?: string;
 }
 
-export class Identity extends EntityBase {
-  private _address: IIdentityAddress;
+const schema = Joi.object({
+  ...JOI_ENTITY_BASE,
+
+  address: JOI_IDENTITY_ADDRESS.required(),
+  birthDate: Joi.string().allow(null).required(),
+  displayName: JOI_IDENTITY_DISPLAY_NAME.required(),
+  familyName: Joi.string().allow(null).required(),
+  gender: Joi.string().allow(null).required(),
+  givenName: Joi.string().allow(null).required(),
+  gravatar: Joi.string().allow(null).required(),
+  locale: Joi.string().allow(null).required(),
+  middleName: Joi.string().allow(null).required(),
+  nickname: Joi.string().allow(null).required(),
+  phoneNumber: Joi.string().allow(null).required(),
+  phoneNumberVerified: Joi.boolean().required(),
+  picture: Joi.string().allow(null).required(),
+  preferredUsername: Joi.string().allow(null).required(),
+  profile: Joi.string().allow(null).required(),
+  website: Joi.string().allow(null).required(),
+  zoneInfo: Joi.string().allow(null).required(),
+});
+
+export class Identity extends LindormEntity<IdentityAttributes> {
+  private _address: IdentityAddress;
   private _birthDate: string;
-  private _displayName: IIdentityDisplayName;
+  private _displayName: IdentityDisplayName;
   private _familyName: string;
   private _gender: string;
   private _givenName: string;
@@ -82,15 +106,24 @@ export class Identity extends EntityBase {
   private _picture: string;
   private _preferredUsername: string;
   private _profile: string;
-  private _username: string;
   private _website: string;
   private _zoneInfo: string;
 
-  constructor(options: IIdentityOptions) {
+  public constructor(options: IdentityOptions) {
     super(options);
-    this._address = options.address || null;
+
+    this._address = {
+      country: options.address?.country || null,
+      locality: options.address?.locality || null,
+      postalCode: options.address?.postalCode || null,
+      region: options.address?.region || null,
+      streetAddress: options.address?.streetAddress || null,
+    };
     this._birthDate = options.birthDate || null;
-    this._displayName = options.displayName || null;
+    this._displayName = {
+      name: options.displayName?.name || null,
+      number: options.displayName?.number || null,
+    };
     this._familyName = options.familyName || null;
     this._gender = options.gender || null;
     this._givenName = options.givenName || null;
@@ -99,19 +132,18 @@ export class Identity extends EntityBase {
     this._middleName = options.middleName || null;
     this._nickname = options.nickname || null;
     this._phoneNumber = options.phoneNumber || null;
-    this._phoneNumberVerified = options.phoneNumberVerified || false;
+    this._phoneNumberVerified = options.phoneNumberVerified === true;
     this._picture = options.picture || null;
     this._preferredUsername = options.preferredUsername || null;
     this._profile = options.profile || null;
-    this._username = options.username || null;
     this._website = options.website || null;
     this._zoneInfo = options.zoneInfo || null;
   }
 
-  public get address(): IIdentityAddress {
+  public get address(): IdentityAddress {
     return this._address;
   }
-  public set address(address: IIdentityAddress) {
+  public set address(address: IdentityAddress) {
     this._address = address;
     this.addEvent(IdentityEvent.ADDRESS_CHANGED, { address: this._address });
   }
@@ -124,10 +156,10 @@ export class Identity extends EntityBase {
     this.addEvent(IdentityEvent.BIRTH_DATE_CHANGED, { birthDate: this._birthDate });
   }
 
-  public get displayName(): IIdentityDisplayName {
+  public get displayName(): IdentityDisplayName {
     return this._displayName;
   }
-  public set displayName(displayName: IIdentityDisplayName) {
+  public set displayName(displayName: IdentityDisplayName) {
     this._displayName = displayName;
     this.addEvent(IdentityEvent.DISPLAY_NAME_CHANGED, { displayName: this._displayName });
   }
@@ -228,14 +260,6 @@ export class Identity extends EntityBase {
     this.addEvent(IdentityEvent.PROFILE_CHANGED, { profile: this._profile });
   }
 
-  public get username(): string {
-    return this._username;
-  }
-  public set username(username: string) {
-    this._username = username;
-    this.addEvent(IdentityEvent.USERNAME_CHANGED, { username: this._profile });
-  }
-
   public get website(): string {
     return this._website;
   }
@@ -253,30 +277,44 @@ export class Identity extends EntityBase {
   }
 
   public create(): void {
-    for (const evt of this._events) {
+    for (const evt of this.events) {
       if (evt.name !== IdentityEvent.CREATED) continue;
       throw new EntityCreationError("Identity");
     }
 
-    this.addEvent(IdentityEvent.CREATED, {
-      address: this._address,
-      birthDate: this._birthDate,
-      displayName: this._displayName,
-      familyName: this._familyName,
-      gender: this._gender,
-      givenName: this._givenName,
-      gravatar: this._gravatar,
-      locale: this._locale,
-      middleName: this._middleName,
-      nickname: this._nickname,
-      phoneNumber: this._phoneNumber,
-      phoneNumberVerified: this._phoneNumberVerified,
-      picture: this._picture,
-      preferredUsername: this._preferredUsername,
-      profile: this._profile,
-      username: this._username,
-      website: this._website,
-      zoneInfo: this._zoneInfo,
-    });
+    const { events, ...rest } = this.toJSON();
+    this.addEvent(DisplayNameEvent.CREATED, rest);
+  }
+
+  public getKey(): string {
+    return this.id;
+  }
+
+  public async schemaValidation(): Promise<void> {
+    await schema.validateAsync(this.toJSON());
+  }
+
+  public toJSON(): IdentityAttributes {
+    return {
+      ...this.defaultJSON(),
+
+      address: this.address,
+      birthDate: this.birthDate,
+      displayName: this.displayName,
+      familyName: this.familyName,
+      gender: this.gender,
+      givenName: this.givenName,
+      gravatar: this.gravatar,
+      locale: this.locale,
+      middleName: this.middleName,
+      nickname: this.nickname,
+      phoneNumber: this.phoneNumber,
+      phoneNumberVerified: this.phoneNumberVerified,
+      picture: this.picture,
+      preferredUsername: this.preferredUsername,
+      profile: this.profile,
+      website: this.website,
+      zoneInfo: this.zoneInfo,
+    };
   }
 }

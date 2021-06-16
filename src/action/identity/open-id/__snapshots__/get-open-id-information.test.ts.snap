@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`getOpenIdInformation should return identity information 1`] = `
-Object {
-  "displayName": "display-name-string",
-  "gravatar": "https://gravatar.url/",
-  "openId": "mock-open-id-data",
-}
-`;
