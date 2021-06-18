@@ -16,7 +16,6 @@ export enum IdentityEvent {
   PICTURE_CHANGED = "identity_picture_changed",
   PREFERRED_USERNAME_CHANGED = "identity_preferred_username_changed",
   PROFILE_CHANGED = "identity_profile_changed",
-  USERNAME_CHANGED = "identity_username_changed",
   WEBSITE_CHANGED = "identity_website_changed",
   ZONE_INFO_CHANGED = "identity_zone_info_changed",
 }

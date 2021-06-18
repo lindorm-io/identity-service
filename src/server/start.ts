@@ -1,5 +1,3 @@
 import { koa } from "./koa";
 
-(async () => {
-  await koa.start();
-})();
+koa.start().then().catch(console.error);

@@ -1,6 +1,6 @@
 import { identityGet } from "./get";
 import { getTestIdentity, logger } from "../../test";
-import { Scope } from "@lindorm-io/jwt";
+import { Scope } from "../../enum";
 
 describe("identityGet", () => {
   let ctx: any;

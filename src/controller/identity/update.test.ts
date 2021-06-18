@@ -1,9 +1,9 @@
 import { ClientError, ServerError } from "@lindorm-io/errors";
 import { Identity } from "../../entity";
-import { Scope } from "@lindorm-io/jwt";
-import { identityUpdate } from "./update";
-import { getTestDisplayName, logger } from "../../test";
+import { Scope } from "../../enum";
 import { getRandomNumber as _getRandomNumber } from "@lindorm-io/core";
+import { getTestDisplayName, logger } from "../../test";
+import { identityUpdate } from "./update";
 
 jest.mock("@lindorm-io/core", () => ({
   ...(jest.requireActual("@lindorm-io/core") as object),
@@ -72,7 +72,6 @@ describe("identityUpdate", () => {
             Scope.PROFILE,
             Scope.WEBSITE,
             Scope.ZONE_INFO,
-            Scope.USERNAME,
           ],
         },
       },

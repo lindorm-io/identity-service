@@ -1,7 +1,8 @@
-import { Permission, Scope, TokenIssuer } from "@lindorm-io/jwt";
 import { Identity } from "../entity";
-import { config } from "../config";
 import { Keystore } from "@lindorm-io/key-pair";
+import { Scope } from "../enum";
+import { TokenIssuer } from "@lindorm-io/jwt";
+import { config } from "../config";
 import { getTestKeyPairEC } from "./test-key-pair";
 import { logger } from "./test-logger";
 
@@ -15,7 +16,7 @@ export const generateAccessToken = (identity: Identity, scope: Array<Scope>): st
   const { token } = issuer.sign({
     audience: "access",
     expiry: "2 minutes",
-    permission: Permission.ADMIN,
+    permission: "user",
     scope: scope,
     subject: identity.id,
   });

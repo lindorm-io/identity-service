@@ -1,12 +1,12 @@
 import Joi from "joi";
+import { ClientError, ServerError } from "@lindorm-io/errors";
 import { Controller, ControllerResponse, HttpStatus } from "@lindorm-io/koa";
 import { IdentityAddress, IdentityAttributes } from "../../entity";
 import { IdentityContext } from "../../typing";
 import { JOI_IDENTITY_ADDRESS } from "../../constant";
+import { Scope } from "../../enum";
 import { camelCase, getRandomNumber } from "@lindorm-io/core";
 import { includes } from "lodash";
-import { ClientError, ServerError } from "@lindorm-io/errors";
-import { Scope } from "@lindorm-io/jwt";
 
 const ALWAYS_ALLOWED_SCOPE = ["displayName", "gravatar"];
 

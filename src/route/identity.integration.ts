@@ -1,8 +1,8 @@
 import MockDate from "mockdate";
 import request from "supertest";
+import { Scope } from "../enum";
 import { generateAccessToken, getTestIdentity, resetAll, setupIntegration, TEST_IDENTITY_REPOSITORY } from "../test";
 import { koa } from "../server/koa";
-import { Scope } from "@lindorm-io/jwt";
 
 MockDate.set("2021-01-01T08:00:00.000Z");
 
