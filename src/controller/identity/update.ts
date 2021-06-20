@@ -1,8 +1,8 @@
 import Joi from "joi";
 import { ClientError, ServerError } from "@lindorm-io/errors";
 import { Controller, ControllerResponse, HttpStatus } from "@lindorm-io/koa";
-import { IdentityAddress, IdentityAttributes } from "../../entity";
-import { IdentityContext } from "../../typing";
+import { IdentityAddress, IdentityContext } from "../../typing";
+import { IdentityAttributes } from "../../entity";
 import { JOI_IDENTITY_ADDRESS } from "../../constant";
 import { Scope } from "../../enum";
 import { camelCase, getRandomNumber } from "@lindorm-io/core";

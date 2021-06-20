@@ -1,21 +1,18 @@
 import { Controller, ControllerResponse, HttpStatus } from "@lindorm-io/koa";
-import { IdentityAttributes } from "../../entity";
-import { IdentityContext } from "../../typing";
+import { IdentityClaims, IdentityContext } from "../../typing";
 import { camelCase } from "@lindorm-io/core";
 import { getDisplayName } from "../../util";
 
-type ResponseBody = Record<string, any>;
-
-export const identityGet: Controller<IdentityContext<unknown>> = async (
+export const identityGet: Controller<IdentityContext<never>> = async (
   ctx,
-): Promise<ControllerResponse<ResponseBody>> => {
+): Promise<ControllerResponse<Partial<IdentityClaims>>> => {
   const {
     entity: { identity },
     logger,
     token: { bearerToken },
   } = ctx;
 
-  const scope = bearerToken.scope.map(camelCase) as Array<keyof IdentityAttributes>;
+  const scope = bearerToken.scope.map(camelCase) as Array<keyof IdentityClaims>;
   const json = identity.toJSON();
   const { gravatar } = json;
   const displayName = getDisplayName(json.displayName);

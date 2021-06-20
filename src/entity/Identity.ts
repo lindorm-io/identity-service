@@ -1,5 +1,6 @@
 import Joi from "joi";
 import { DisplayNameEvent, IdentityEvent } from "../enum";
+import { IdentityAddress } from "../typing";
 import { JOI_IDENTITY_ADDRESS, JOI_IDENTITY_DISPLAY_NAME } from "../constant";
 import {
   EntityAttributes,
@@ -9,53 +10,39 @@ import {
   LindormEntity,
 } from "@lindorm-io/entity";
 
-export interface IdentityAddress {
-  country: string | null;
-  locality: string | null;
-  postalCode: string | null;
-  region: string | null;
-  streetAddress: string | null;
-}
-
 export interface IdentityDisplayName {
-  name: string | null;
-  number: number | null;
+  name: string;
+  number: number;
 }
 
 export interface IdentityAttributes extends EntityAttributes {
-  // public
-  displayName: IdentityDisplayName;
-  gravatar: string | null;
-
-  // openid
   address: IdentityAddress;
-  birthDate: string | null;
-  familyName: string | null;
-  gender: string | null;
-  givenName: string | null;
-  locale: string | null;
-  middleName: string | null;
-  nickname: string | null;
-  phoneNumber: string | null;
+  birthDate: string;
+  displayName: IdentityDisplayName;
+  familyName: string;
+  gender: string;
+  givenName: string;
+  gravatar: string;
+  locale: string;
+  middleName: string;
+  nickname: string;
+  phoneNumber: string;
   phoneNumberVerified: boolean;
-  picture: string | null;
-  preferredUsername: string | null;
-  profile: string | null;
-  website: string | null;
-  zoneInfo: string | null;
+  picture: string;
+  preferredUsername: string;
+  profile: string;
+  website: string;
+  zoneInfo: string;
 }
 
 export interface IdentityOptions extends EntityOptions {
-  // public
-  displayName?: IdentityDisplayName;
-  gravatar?: string;
-
-  // openid
   address?: IdentityAddress;
   birthDate?: string;
+  displayName?: IdentityDisplayName;
   familyName?: string;
   gender?: string;
   givenName?: string;
+  gravatar?: string;
   locale?: string;
   middleName?: string;
   nickname?: string;
