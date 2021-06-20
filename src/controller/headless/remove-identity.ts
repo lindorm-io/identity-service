@@ -1,15 +1,9 @@
-import Joi from "joi";
 import { Controller, ControllerResponse, HttpStatus } from "@lindorm-io/koa";
 import { IdentityContext } from "../../typing";
-import { JOI_GUID } from "../../constant";
 
 type ResponseBody = Record<string, never>;
 
-export const headlessRemoveIdentitySchema = Joi.object({
-  id: JOI_GUID.required(),
-});
-
-export const headlessRemoveIdentity: Controller<IdentityContext<unknown>> = async (
+export const headlessRemoveIdentity: Controller<IdentityContext<never>> = async (
   ctx,
 ): Promise<ControllerResponse<ResponseBody>> => {
   const {

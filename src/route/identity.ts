@@ -1,8 +1,9 @@
 import { IdentityContext } from "../typing";
-import { Scope } from "../enum/scope";
+import { Scope } from "../enum";
 import { bearerAuthMiddleware, identityEntityMiddleware } from "../middleware";
 import { createController, Router, schemaMiddleware } from "@lindorm-io/koa";
-import { identityGet, identityUpdate, identityUpdateSchema } from "../controller";
+import { identityGet, identityUpdate } from "../controller";
+import { identityUpdateSchema } from "../schema";
 
 export const router = new Router<unknown, IdentityContext>();
 

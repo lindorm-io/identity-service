@@ -1,6 +1,7 @@
 import MockDate from "mockdate";
 import request from "supertest";
 import { baseHash } from "@lindorm-io/core";
+import { koa } from "../server/koa";
 import {
   getTestDisplayName,
   getTestIdentity,
@@ -9,7 +10,6 @@ import {
   TEST_DISPLAY_NAME_REPOSITORY,
   TEST_IDENTITY_REPOSITORY,
 } from "../test";
-import { koa } from "../server/koa";
 
 MockDate.set("2021-01-01T08:00:00.000Z");
 
@@ -28,10 +28,7 @@ describe("/headless", () => {
       })
       .expect(201);
 
-    expect(response.body).toStrictEqual({
-      created: "2021-01-01T08:00:00.000Z",
-      updated: "2021-01-01T08:00:00.000Z",
-    });
+    expect(response.body).toStrictEqual({});
   });
 
   test("GET /identity/:id", async () => {

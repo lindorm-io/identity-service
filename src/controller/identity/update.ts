@@ -1,9 +1,7 @@
-import Joi from "joi";
 import { ClientError, ServerError } from "@lindorm-io/errors";
 import { Controller, ControllerResponse, HttpStatus } from "@lindorm-io/koa";
 import { IdentityAddress, IdentityContext } from "../../typing";
 import { IdentityAttributes } from "../../entity";
-import { JOI_IDENTITY_ADDRESS } from "../../constant";
 import { Scope } from "../../enum";
 import { camelCase, getRandomNumber } from "@lindorm-io/core";
 import { includes } from "lodash";
@@ -30,25 +28,6 @@ interface RequestBody {
 }
 
 type ResponseBody = Record<string, never>;
-
-export const identityUpdateSchema = Joi.object({
-  address: JOI_IDENTITY_ADDRESS,
-  birthDate: Joi.string().allow(null),
-  displayName: Joi.string().allow(null),
-  familyName: Joi.string().allow(null),
-  gender: Joi.string().allow(null),
-  givenName: Joi.string().allow(null),
-  gravatar: Joi.string().allow(null),
-  locale: Joi.string().allow(null),
-  middleName: Joi.string().allow(null),
-  nickname: Joi.string().allow(null),
-  phoneNumber: Joi.string().allow(null),
-  picture: Joi.string().allow(null),
-  preferredUsername: Joi.string().allow(null),
-  profile: Joi.string().allow(null),
-  website: Joi.string().allow(null),
-  zoneInfo: Joi.string().allow(null),
-});
 
 export const identityUpdate: Controller<IdentityContext<RequestBody>> = async (
   ctx,

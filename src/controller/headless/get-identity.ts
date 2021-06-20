@@ -1,14 +1,8 @@
-import Joi from "joi";
 import { Controller, ControllerResponse, HttpStatus } from "@lindorm-io/koa";
 import { IdentityClaims, IdentityContext } from "../../typing";
-import { JOI_GUID } from "../../constant";
 import { getDisplayName } from "../../util";
 
-export const headlessGetIdentitySchema = Joi.object({
-  id: JOI_GUID.required(),
-});
-
-export const headlessGetIdentity: Controller<IdentityContext<unknown>> = async (
+export const headlessGetIdentity: Controller<IdentityContext<never>> = async (
   ctx,
 ): Promise<ControllerResponse<Partial<IdentityClaims>>> => {
   const {

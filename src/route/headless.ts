@@ -1,13 +1,8 @@
 import { IdentityContext } from "../typing";
 import { basicAuthMiddleware, identityEntityMiddleware } from "../middleware";
 import { createController, Router, schemaMiddleware } from "@lindorm-io/koa";
-import {
-  headlessCreateIdentity,
-  headlessCreateIdentitySchema,
-  headlessGetIdentity,
-  headlessGetIdentitySchema,
-} from "../controller";
-import { headlessRemoveIdentity, headlessRemoveIdentitySchema } from "../controller/headless/remove-identity";
+import { headlessCreateIdentity, headlessGetIdentity, headlessRemoveIdentity } from "../controller";
+import { headlessCreateIdentitySchema, headlessGetIdentitySchema, headlessRemoveIdentitySchema } from "../schema";
 
 export const router = new Router<unknown, IdentityContext>();
 

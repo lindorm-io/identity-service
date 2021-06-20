@@ -1,20 +1,11 @@
-import Joi from "joi";
 import { Controller, ControllerResponse, HttpStatus } from "@lindorm-io/koa";
 import { IdentityContext } from "../../typing";
-import { JOI_GUID } from "../../constant";
 
 interface RequestBody {
   identityId: string;
 }
 
-interface ResponseBody {
-  created: Date;
-  updated: Date;
-}
-
-export const headlessCreateIdentitySchema = Joi.object({
-  identityId: JOI_GUID.required(),
-});
+type ResponseBody = Record<string, never>;
 
 export const headlessCreateIdentity: Controller<IdentityContext<RequestBody>> = async (
   ctx,
@@ -31,13 +22,10 @@ export const headlessCreateIdentity: Controller<IdentityContext<RequestBody>> = 
     identityId,
   });
 
-  const identity = await identityRepository.findOrCreate({ id: identityId });
+  await identityRepository.findOrCreate({ id: identityId });
 
   return {
-    body: {
-      created: identity.created,
-      updated: identity.updated,
-    },
+    body: {},
     status: HttpStatus.Success.CREATED,
   };
 };
